@@ -1,0 +1,415 @@
+SQL
+
+- Modelagem de dados
+- Construção de Banco de Dados
+- Interpretação e Extração de Dados
+- Desempenho
+- Manutenção dos Métodos e procedures
+- Equipe do DBA
+
+=== Fundamentos do Banco de dados.
+- Introduction a banco de dados.
+- Sistemas de Gerenciamento de banco de dados.
+- Modelagem de Dados para banco de dados.
+- Arquitetura de banco de dados.
+
+= Banco de dados
+- Negócios
+- E-commerce
+- Medicina
+- Engenharia
+- Social Media
+- Database --> Conjunto de dados.
+`
+Um banco de dados é um sistema utilizado para armazenar, organizar e gerenciar grandes volumes de dados de maneira eficiente e estruturada..
+`
+- Contexto --> representação do mundo real
+- Coerência;
+- Propósito
+
+================ SGBDs ======================
+# SGBDs --> Sistemas de Gerenciamento de Banco de dado.
+
+- Recuperação de Dados: Gerencia a forma como os dados são armazenados fisicamente e fornece mecanismos para recuperá-los rapidamente.
+
+- Controle de Acesso: Garante que apenas usuários autorizados possam acessar e modificar os dados, proporcionando segurança e integridade.
+
+- Integridade de Dados: Assegura que os dados armazenados estão corretos e consistentes.
+
+- Suporte a Transações: Garante que operações de banco de dados, chamadas de transações, sejam realizadas completamente ou não sejam realizadas de forma alguma, mantendo a consistência do banco de dados.
+
+- Administração de Dados: Fornece ferramentas para monitorar e otimizar o desempenho do banco de dados.
+
+# Modelo Relacional
+- Tabelas: Estruturas que armazenam dados em linhas e colunas.
+
+- Chaves Primárias: Campos que identificam unicamente cada registro em uma tabela.
+
+- Chaves Estrangeiras: Campos que criam relacionamentos entre tabelas, ligando um campo de uma tabela a um campo correspondente de outra tabela.
+
+- Normalização: Processo de organizar dados para reduzir a redundância e melhorar a integridade dos dados.
+
+- SQL (Structured Query Language): Linguagem padrão usada para gerenciar e consultar bancos de dados relacionais.
+
+## SGBDs Mais utilizado no Mercado.
+- Oracle
+- MySQL
+- SQLServer
+- PostgreSQL
+- MongoDB 
+- Redis
+
+## SGBDs Natureza auto-descritiva
+- Descrição da estrutura e constrains
+- DB schema 
+
+## SGBDs Isolamento e abstração.
+- Abstração --> independência do programa e dados
+- Transparência  
+
+## Múltiplas Visões dos dados.
+` Em um contexto de SGBDs relacionais, múltiplas visões dos dados referem-se à capacidade de visualizar dados de diferentes maneiras para atender a necessidades específicas. Isso pode ser realizado através de`
+
+- Views (Visões): Consultas SQL armazenadas que apresentam dados específicos de uma ou mais tabelas sem alterar os dados subjacentes.
+
+- Índices: Estruturas que melhoram a eficiência das consultas e permitem acesso rápido a registros.
+
+- Consultas Personalizadas: SQL permite a criação de consultas personalizadas para extrair e visualizar dados conforme necessário.
+
+- Relatórios Dinâmicos: Ferramentas que geram relatórios com base em critérios definidos pelo usuário.
+
+
+## Compartilhamento de Dados
+- O compartilhamento de dados é uma das principais funções dos SGBDs. Ele permite que diferentes usuários e aplicações acessem os mesmos dados sem conflitos. Algumas das características importantes do compartilhamento de dados incluem:
+
+- Controle de Concurrency: Técnicas como bloqueios e controle de versões são usadas para garantir que múltiplas transações possam ocorrer simultaneamente sem interferências indesejadas.
+
+- Isolamento: Cada transação opera como se fosse a única em andamento, garantindo que as operações de uma transação não afetem outras.
+
+- Integridade dos Dados: Garantir que os dados permanecem corretos e consistentes durante operações simultâneas.
+
+## Processamento de Transações Multiusuários
+- O processamento de transações é fundamental para sistemas onde várias operações de leitura e escrita ocorrem ao mesmo tempo. As características do processamento de transações multiusuários incluem:
+
+- ACID Properties: As transações devem seguir as propriedades de Atomicidade, Consistência, Isolamento e Durabilidade para garantir que sejam executadas corretamente.
+
+- Recuperação de Falhas: Capacidade de restaurar o sistema a um estado consistente após falhas, como quedas de energia ou erros de software.
+
+- Gerenciamento de Transações: Ferramentas e técnicas para iniciar, gerenciar e encerrar transações de forma eficiente e segura.
+
+# Abordagem de SGBDs - atores, Workers, Vantagens e quando não utilizar
+
+## Atores
+- administrador
+	- Gerencia Recursos
+	- Orquestração
+	- Autorização de acesso
+- Designers
+	- identificar dados e requisitos
+	- Representação e Estrutura
+	- Fase preliminar
+- usuários Finais
+	- Acesso --> SQL Querys {consultas}
+	- Categorizadas
+## Workers
+- background
+	- Designer do sistema de SGBD
+	- Implementação do sistema de SGBD
+		- Implementação
+	- Pessoal de operação e manutenção
+	- Desenvolvedores de Ferramentas
+
+============ Modelagem ===========
+
+# Modelagem: É o processo de criar uma representação simplificada de um sistema ou fenômeno do mundo real, com o objetivo de entender, analisar e comunicar suas características e comportamentos. Na engenharia de software, a modelagem é usada para descrever a estrutura, o comportamento e os dados dos sistemas de software antes de serem desenvolvidos.
+
+# Entidade: Em modelagem, uma entidade representa um objeto ou conceito do mundo real que possui um significado específico no contexto do sistema que está sendo modelado. Por exemplo, em um sistema de gerenciamento de uma biblioteca, as entidades podem incluir "Livro", "Usuário" e "Empréstimo". Cada entidade possui atributos que descrevem suas características, como título e autor para a entidade "Livro".
+
+# UML (Unified Modeling Language): É uma linguagem de modelagem visual padronizada usada para especificar, visualizar, construir e documentar os artefatos de um sistema de software. A UML fornece um conjunto de diagramas que ajudam a representar diferentes aspectos do sistema, como:
+
+- Diagramas de caso de uso (Use Case Diagrams)
+
+- Diagramas de classes (Class Diagrams)
+
+- Diagramas de sequência (Sequence Diagrams)
+
+- Diagramas de atividades (Activity Diagrams)
+
+A UML é amplamente utilizada na engenharia de software para auxiliar na comunicação entre os membros da equipe de desenvolvimento e na documentação do sistema.
+
+========= Arquitetura BDs =============
+# Modelo
+	- abstração = essencial
+		- data model
+- classificação	
+	- Estrutura
+	- Modelo de dados conceitual
+		- visão de alto nível
+			- Entidade
+			- Atributos
+			- Relacionamentos
+	- Modelo de Dados de Implementação
+		- Representacional
+			- Modelo de dados relacional
+				- Constrains 
+				- linguagens SQL
+				- Operação
+			- Modelos Hierárquicos
+	- Modelo de dados Físicos
+		- especialista
+# Esquemas, Instâncias e State BDs
+
+- Schema
+	- Descrição
+		- diagramas
+- Instância
+	- dados persistidos
+
+- State BDs
+	- update
+	- insert
+	- delete
+
+# Three-Schema
+- Views
+- Catálogo
+- Isolamento data/program
+
+# Classificação de SGBDs
+- Modelo de dados
+	- SQL
+	- NoSql
+- N de usuário
+- N de sites
+- Custo
+- Tipo de caminho de acesso
+
+===== Metodologia Modelagem de Dados =====
+
+# mini-world Closed
+- Retornar falso para dados não existente no contexto do dbs
+
+# Álgebra Relacional
+
+- Linguagem formal para consulta/extração de dados
+- O predicado é a parte da oração que contém o verbo e que traz informações sobre o sujeito.
+	- Critério
+		- where
+		- having
+- Processo do dbs
+	- Projeto Conceitual
+		- Projeto Lógico 
+			- Projeto Físico 
+				- Validação
+					- Produção								- Manutenção
+# Como Implementar um BD
+
+- Entender o contexto e requisitos
+
+- Perfil...
+
+- Processo Evolutivo ou gradual
+	- Implementação
+	- Modelo
+	- Arquitetura
+	- Funcionalidades
+
+# Projeto Conceitual
+
+- Linguagens de modelagem de dados
+	- Gráficas
+	- Textuais
+- Coletas de Dados
+- Análise
+
+# Projeto Lógico
+- Modelo Conceitual
+	- Estrutura
+		- Organização dos dados
+
+==== Project Logic x físico
+O projeto lógico se concentra na estrutura dos dados, enquanto o projeto físico considera a performance, armazenamento e segurança.
+
+
+== Modelo ER: Tipos de Entidades, Chaves e Atributos ===
+
+- Modelo Conceitual
+	- Entidades
+	- Atributos
+	- Relacionamentos
+
+- Diagrama ER
+	- Raras Modificações
+	- Facilidade de manipular
+	- Esquema ER do dbs
+
+# Entidades
+
+- Componente Básico
+- Existência independente
+- Atributos
+
+# Atributos ER
+
+- Características/Descrição das Entidade
+
+- Atributos Relacionados as instâncias
+	- Atômicos x Composto
+		- Atômicos simples única propriedade
+		- Compostos por propriedades (concatenação)
+	- Atributos multivalorados
+	- Armazenados e derivados
+	- Atributos Nulos
+	- Atributos Complexos
+
+# Entidade Fraca
+
+- Dependência: Elas dependem de uma entidade forte para sua identificação.
+
+- Relacionamento Identificador: Há um relacionamento entre a entidade fraca e a entidade forte, chamado de relacionamento identificador.
+
+- Chave Parcial: A entidade fraca possui uma chave parcial que, combinada com a chave primária da entidade forte, forma a chave primária composta.
+
+# Relacionamento Grau
+
+- Relacionamento Binários
+	- Aluno (entidade)
+	- Curso (entidade)
+	- Matricula (relacionamento)
+
+- Relacionamento Ternário
+	- Paciente (entidade)
+	- Médico (entidade)
+	- Hospital (entidade)
+	- Tratamento (relacionamento)
+
+- Número de Entidades: Relacionamentos binários envolvem duas entidades, enquanto relacionamentos ternários envolvem três entidades.
+
+- Complexidade: Relacionamentos ternários são mais complexos e podem representar interações mais detalhadas entre entidades, comparado com relacionamentos binários.
+
+# Constraints - Cardinalidade
+
+- Cardinalidade corresponde ao N máximo de instância que participam de um determinado relacionamento.
+
+- 1:1
+- 1:3
+- 1:N
+- N:1
+- M:N
+
+# Entidade Fraca
+
+- Tipos de Entidades
+	- Fracas
+		- Dependem de outra
+	- Relacionamento ID (interligadas)
+	- Fortes
+		- Owner Entity Type
+
+# Notações DER
+
+- Entidades: Classes/Objetos --> Retângulo
+- Relacionamentos: Agregações --> losango
+- Atributos: Propriedades elementares --> eclipse
+- Weak: Entidades, relacionamentos
+- Chave Parcial: Linha pontilhada
+- Chave principal: linha continua
+- Dependência de existência: ||
+- Atributo derivado
+- Atributo composto
+- Participação total
+- Cardinalidade 
+- Constraint estrutural
+# Relacionamento N-ário
+- Ternário,..., N-ário
+- Perspectiva diferente do binário
+
+
+==== Modelagem de Dados com EER ====
+- Modelo ER 1970
+- EER: Novos Conceitos Semânticos
+- Desenvolvidos fora da área de BDs
+- Digrama ERR
+
+# Modelo Enhanced ER
+- Superclasses
+- Herança
+- Subclasses
+	- Depende do contexto do BD
+	- Objeto distinto no BD
+	- Herança de Superclasse
+- Generalização e Especialização
+- Categoria ou Union Type
+- Herança: Atributo e relacionamento
+
+# Herança
+
+"Princípio próprio á programação orientada a objetos (POO) que permite criar uma nova classe a partir de uma já existente."
+
+- Reutilização de código
+- Especialização de classes
+- Agregar atributos e métodos
+
+# Especialização e Generalização
+
+- Generalização: Combina múltiplas entidades específicas em uma entidade genérica (movimento de "baixo para cima").
+- Exemplo: Entidades Carro e Caminhão podem ser generalizadas para Veículo.
+
+- Especialização: Divide uma entidade genérica em entidades mais específicas (movimento de "cima para baixo").
+- Exemplo: Veículo pode ser especializado em Carro e Caminhão.
+
+# [1:1]
+- instâncias das superclasse e subclasses
+- Mesma representação de mundo real
+- Papel especializado
+
+# Diferença Fundamental:
+A generalização foca em encontrar semelhanças e agrupar o que é comum, enquanto a especialização foca em identificar diferenças e detalhar o que é único.
+
+# Constraints - Modelo EER 
+- Predicated-defined (condição)
+	- Definição: Aqui, a divisão de um supertipo em subtipos 	é feita com base em condições lógicas ou predicados.
+- Attribute-defined Specialization
+	- Definição: A especialização ou generalização é guiada 	por valores específicos de um atributo no supertipo.
+- User-defined
+	- Definição: Neste caso, não há predicados ou atributos 	claramente definidos. A categorização é baseada na 	decisão manual do usuário.
+
+# Hierárquica & Rede de Especialização
+- Hierarquia de especialização
+- Rede de especialização
+
+# Estrutura no Modelo
+
+- Categorização: Não altera a estrutura das entidades. Cada uma mantém seus atributos e relacionamentos. A categorização é mais como "etiquetas" ou identificadores.
+- Exemplo: Na categorização, você identifica Cliente VIP sem mudar a estrutura da tabela de Clientes.
+
+- Union Types: Requer a criação de uma nova entidade que abstrai ou agrega entidades distintas. Isso pode alterar a forma como os relacionamentos e atributos são modelados.
+- Exemplo: Ao criar um Union Type como UsuárioBiblioteca, atributos ou relacionamentos comuns (como Data de Empréstimo) são migrados para o tipo unificado.
+
+# Terminologias
+
+- Knowledge representation (KR)
+
+- Ontologia
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
