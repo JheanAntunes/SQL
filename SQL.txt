@@ -289,13 +289,18 @@ O projeto lógico se concentra na estrutura dos dados, enquanto o projeto físic
 
 # Constraints - Cardinalidade
 
-- Cardinalidade corresponde ao N máximo de instância que participam de um determinado relacionamento.
+- Cardinalidade
+A cardinalidade, no contexto de relações, refere-se ao número de tuplas (linhas) em uma relação. Em outras palavras, é o total de registros presentes na tabela.
 
-- 1:1
-- 1:3
-- 1:N
-- N:1
-- M:N
+Exemplo: Se a tabela "Funcionários" tiver 5 registros (linhas), sua cardinalidade será 5.
+
+Além disso, a cardinalidade também é usada para descrever relações entre tabelas em um banco de dados, como:
+
+1:1 (um para um): Cada linha de uma tabela está associada a uma única linha de outra tabela.
+
+1:N (um para muitos): Uma linha de uma tabela pode estar associada a várias linhas de outra tabela.
+
+N:M (muitos para muitos): Várias linhas de uma tabela podem estar associadas a várias linhas de outra tabela.
 
 # Entidade Fraca
 
@@ -392,16 +397,41 @@ A generalização foca em encontrar semelhanças e agrupar o que é comum, enqua
 
 - Ontologia
 
+# Conceitos Modelo Relacional
+- Modelo Relacional
+	- Coleção de Relação
+		- Classes
+		- Objetos
+- Tabelas x Arquivos
+- Entidade
+- tabela --> Relação
+- Tupla --> linha || instância || registro
+- Atributo --> propriedade/Coluna da relação
+
+# O que é Lógica de Predicado?
+A lógica de predicado é um ramo da lógica matemática que estuda proposições com variáveis e quantificadores, como "para todo" (∀) e "existe" (∃). Diferente da lógica proposicional (que usa apenas proposições simples), a lógica de predicado permite descrever relações entre objetos e suas propriedades de forma mais detalhada.
+Por exemplo:
+	- Proposição: "Maria é uma estudante."
+
+	- Lógica de Predicado: Estudante(Maria), onde "Estudante" é um predicado que define uma propriedade da variável "Maria".
+	
+- Consultas SQL: A lógica de predicado influencia a forma como as consultas são formuladas. Um comando SQL, como SELECT, é semelhante à aplicação de predicados para filtrar ou projetar os dados.
 
 
+# Domínio
+O domínio refere-se ao conjunto de valores possíveis que um atributo pode assumir. É como uma "regra" que define os valores válidos para determinada coluna.
 
+Exemplo: Se o atributo "Idade" tiver um domínio definido como números inteiros entre 18 e 65, isso significa que somente valores dentro desse intervalo serão aceitos para essa coluna.
 
+O domínio garante que os dados armazenados sejam válidos e consistentes com as restrições aplicadas.
 
+# Constraints Modelo Relacional
 
+- Integridade dos Dados: Garantem que os dados sejam válidos e consistentes com as regras do sistema.
 
+- Prevenção de Erros: Evitam a entrada de dados inválidos.
 
-
-
+- Automatização de Regras de Negócio: Muitas regras podem ser implementadas diretamente no design do banco de dados.
 
 
 
