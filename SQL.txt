@@ -412,7 +412,7 @@ A generalização foca em encontrar semelhanças e agrupar o que é comum, enqua
 A lógica de predicado é um ramo da lógica matemática que estuda proposições com variáveis e quantificadores, como "para todo" (∀) e "existe" (∃). Diferente da lógica proposicional (que usa apenas proposições simples), a lógica de predicado permite descrever relações entre objetos e suas propriedades de forma mais detalhada.
 Por exemplo:
 	- Proposição: "Maria é uma estudante."
-
+	
 	- Lógica de Predicado: Estudante(Maria), onde "Estudante" é um predicado que define uma propriedade da variável "Maria".
 	
 - Consultas SQL: A lógica de predicado influencia a forma como as consultas são formuladas. Um comando SQL, como SELECT, é semelhante à aplicação de predicados para filtrar ou projetar os dados.
@@ -433,11 +433,35 @@ O domínio garante que os dados armazenados sejam válidos e consistentes com as
 
 - Automatização de Regras de Negócio: Muitas regras podem ser implementadas diretamente no design do banco de dados.
 
+- DDL --> Data Definition Language --> Create, Drop, Insert, Rename
+- DML --> Data Manipulation Language --> Insert, Update, Delete, Merge
+- DCL --> Data Control Language --> Grant, Revoke
+- DQL - Data Query Language --> Select
 
+- Integridade Referencial: É uma regra que mantém os relacionamentos entre tabelas consistentes, garantindo que não haja referências a dados inexistentes em tabelas relacionadas.
 
+- Chave Estrangeira (Foreign Key): É um campo em uma tabela que cria o vínculo com a chave primária de outra tabela, assegurando a integridade referencial.
 
+# Relacionamentos 1:1
 
+geralmente existem duas opções para o mapeamento relacional:
+1. Unir as tabelas: Incorporar os atributos de uma entidade na tabela da outra.
+2. Usar chaves estrangeiras: Cada entidade mantém sua tabela, e o relacionamento é representado por uma chave estrangeira.
+	1. Use a primeira abordagem quando o relacionamento é altamente dependente e quase inseparável.
 
+	2.	A segunda abordagem é preferida quando as entidades têm identidades próprias e podem existir separadamente.
+
+# Um relacionamento binário 1:N 
+
+(um para muitos) ocorre quando uma entidade A se associa a várias entidades B, mas cada entidade B está associada a apenas uma entidade A.
+
+1. Identificar as Entidades e o Relacionamento:
+Exemplo: Entidade Cliente (1) e Pedido (N).
+
+Um cliente pode fazer vários pedidos, mas cada pedido está associado a um único cliente.
+
+2. Definir o Relacionamento:
+A tabela que representa o lado "muitos" (Pedidos) conterá uma chave estrangeira que referencia a tabela do lado "um" (Clientes).
 
 
 
