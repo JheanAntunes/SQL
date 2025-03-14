@@ -463,6 +463,12 @@ Um cliente pode fazer vários pedidos, mas cada pedido está associado a um úni
 2. Definir o Relacionamento:
 A tabela que representa o lado "muitos" (Pedidos) conterá uma chave estrangeira que referencia a tabela do lado "um" (Clientes).
 
+# Relacionamento N:M
+
+Mapeamento de relacionamentos binários N:M (muitos para muitos) é um conceito comum em modelagem de banco de dados relacional e análise de sistemas. Ele representa uma associação onde múltiplas entidades de um lado podem estar relacionadas a múltiplas entidades do outro lado.
+
+Esse modelo permite rastrear facilmente as associações entre as duas entidades e facilita a consulta ou manipulação de dados. Posso detalhar mais, se precisar de algo específico! 😊
+
 
 
 
