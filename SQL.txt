@@ -469,7 +469,12 @@ Mapeamento de relacionamentos binários N:M (muitos para muitos) é um conceito 
 
 Esse modelo permite rastrear facilmente as associações entre as duas entidades e facilita a consulta ou manipulação de dados. Posso detalhar mais, se precisar de algo específico! 😊
 
-
-
-
-
+=========== SQL ===========
+- DDL --> Data Definition Language
+	- Create | Drop | Alter
+	- Insert | Update | Delete
+	- Rename | Truncate | Merge
+- User
+- Schema
+- Statements
+- INDEXING
