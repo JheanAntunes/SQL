@@ -1,0 +1,10 @@
+- SHOW --> exibir
+    show databases
+    show tables
+- CREATE --> criar
+    CREATE Database
+    CREATE table
+- USE --> entrar no database
+    USE first_example
+- DESC --> visualizar colunas da tabela
+  DESC person
