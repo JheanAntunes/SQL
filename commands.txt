@@ -1,10 +1,37 @@
-- SHOW --> exibir
-    show databases
-    show tables
-- CREATE --> criar
-    CREATE Database
-    CREATE table
-- USE --> entrar no database
-    USE first_example
-- DESC --> visualizar colunas da tabela
-  DESC person
+- SHOW - exibir
+
+- CREATE - criar
+
+USE - entrar no database
+
+DESC - visualizar colunas da tabela
+
+SELECT - Usado para consultar e recuperar dados de uma tabela.
+
+INSERT INTO - Insere novos dados em uma tabela.
+
+UPDATE - Atualiza dados existentes em uma tabela.
+
+DELETE - Remove dados de uma tabela.
+
+CREATE TABLE - Cria uma nova tabela no banco de dados.
+
+DROP TABLE - Remove uma tabela do banco de dados.
+
+ALTER TABLE - Modifica a estrutura de uma tabela existente (por exemplo, adicionando ou removendo colunas).
+
+JOIN - Combina registros de duas ou mais tabelas com base em uma condição.
+
+WHERE - Filtro usado para especificar condições em uma consulta.
+
+GROUP BY - Agrupa resultados com base em uma ou mais colunas.
+
+ORDER BY - Ordena os resultados de uma consulta em ordem ascendente ou descendente.
+
+HAVING - Filtra grupos de resultados após o uso do GROUP BY.
+
+CREATE INDEX - Cria um índice para acelerar consultas no banco de dados.
+
+DROP INDEX - Remove índices de uma tabela.
+
+TRUNCATE TABLE - Remove todos os registros de uma tabela, mas preserva sua estrutura.
