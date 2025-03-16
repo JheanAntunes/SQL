@@ -478,3 +478,37 @@ Esse modelo permite rastrear facilmente as associações entre as duas entidades
 - Schema
 - Statements
 - INDEXING
+
+# DDL (Data Definition Language)
+Propósito: Definir e modificar a estrutura do banco de dados.
+
+Comandos comuns:
+
+CREATE: Cria novos objetos no banco de dados, como tabelas e índices.
+
+ALTER: Modifica a estrutura de objetos existentes.
+
+DROP: Remove objetos do banco.
+
+TRUNCATE: Remove todos os registros de uma tabela, mantendo sua estrutura.
+
+Foco: Gerencia a definição e organização do banco de dados.
+
+Reversibilidade: As alterações geralmente não podem ser revertidas (exemplo: ao usar DROP).
+
+# DML (Data Manipulation Language)
+Propósito: Manipular dados armazenados nas tabelas.
+
+Comandos comuns:
+
+SELECT: Recupera dados.
+
+INSERT: Insere novos registros.
+
+UPDATE: Atualiza registros existentes.
+
+DELETE: Remove registros.
+
+Foco: Lida com os dados propriamente ditos, sem modificar a estrutura das tabelas.
+
+Reversibilidade: As alterações realizadas podem ser desfeitas dentro de uma transação (usando ROLLBACK).
