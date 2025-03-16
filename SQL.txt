@@ -512,3 +512,29 @@ DELETE: Remove registros.
 Foco: Lida com os dados propriamente ditos, sem modificar a estrutura das tabelas.
 
 Reversibilidade: As alterações realizadas podem ser desfeitas dentro de uma transação (usando ROLLBACK).
+
+# DCL (Data Control Language)
+Propósito: Gerenciar permissões e segurança no banco de dados.
+
+Comandos principais:
+
+GRANT: Concede permissões a usuários ou papéis para acessar e realizar ações no banco de dados.
+
+Exemplo: GRANT SELECT, INSERT ON clientes TO usuarioX;
+
+REVOKE: Revoga permissões previamente concedidas.
+
+Exemplo: REVOKE INSERT ON clientes FROM usuarioX;
+
+Foco: Controlar quem pode acessar ou modificar os dados e as estruturas do banco.
+
+# DQL (Data Query Language)
+Propósito: Consultar dados do banco de dados.
+
+Comando principal:
+
+SELECT: É a base do DQL e permite buscar dados de uma ou mais tabelas.
+
+Exemplo: SELECT nome, email FROM clientes WHERE cidade = 'Rio de Janeiro';
+
+Foco: Extrair e visualizar informações armazenadas no banco de dados.
