@@ -476,7 +476,7 @@ Esse modelo permite rastrear facilmente as associações entre as duas entidades
 	- Rename | Truncate | Merge
 - User
 - Schema
-- Statements
+- Statementss
 - INDEXING
 
 # DDL (Data Definition Language)
@@ -538,3 +538,17 @@ SELECT: É a base do DQL e permite buscar dados de uma ou mais tabelas.
 Exemplo: SELECT nome, email FROM clientes WHERE cidade = 'Rio de Janeiro';
 
 Foco: Extrair e visualizar informações armazenadas no banco de dados.
+
+# Constraints
+
+PRIMARY KEY: Garante que cada registro de uma tabela seja único.
+
+FOREIGN KEY: Estabelece uma relação entre duas tabelas, ligando uma chave de uma tabela à chave primária de outra:
+
+NOT NULL: Impede que uma coluna tenha valores nulos:
+
+UNIQUE: Garante que todos os valores em uma coluna sejam únicos:
+
+CHECK: Define uma condição para os valores de uma coluna:
+
+DEFAULT: Especifica um valor padrão para uma coluna, caso não seja fornecido nenhum valor:
