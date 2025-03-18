@@ -552,3 +552,6 @@ UNIQUE: Garante que todos os valores em uma coluna sejam únicos:
 CHECK: Define uma condição para os valores de uma coluna:
 
 DEFAULT: Especifica um valor padrão para uma coluna, caso não seja fornecido nenhum valor:
+
+# Teoria por Trás dos Alias
+Um alias é simplesmente um nome alternativo, temporário e amigável atribuído a colunas ou tabelas dentro de uma consulta SQL. Ele serve para melhorar a legibilidade do código ou facilitar a referência a elementos complexos (como colunas calculadas ou subconsultas). Um alias não altera os nomes reais no banco de dados, apenas os renomeia durante a execução da consulta.
