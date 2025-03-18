@@ -35,3 +35,5 @@ CREATE INDEX - Cria um índice para acelerar consultas no banco de dados.
 DROP INDEX - Remove índices de uma tabela.
 
 TRUNCATE TABLE - Remove todos os registros de uma tabela, mas preserva sua estrutura.
+
+ALIAS - TABLE | COLUNAS AS APELIDO TEMPORARIO
