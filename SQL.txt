@@ -555,3 +555,12 @@ DEFAULT: Especifica um valor padrão para uma coluna, caso não seja fornecido n
 
 # Teoria por Trás dos Alias
 Um alias é simplesmente um nome alternativo, temporário e amigável atribuído a colunas ou tabelas dentro de uma consulta SQL. Ele serve para melhorar a legibilidade do código ou facilitar a referência a elementos complexos (como colunas calculadas ou subconsultas). Um alias não altera os nomes reais no banco de dados, apenas os renomeia durante a execução da consulta.
+
+Expressões em SQL
+As expressões são usadas para realizar operações ou cálculos no SELECT. Elas podem incluir operadores aritméticos, funções, concatenações de strings e muito mais. Exemplos de expressões comuns incluem:
+
+SELECT preço * quantidade AS total FROM vendas;
+
+SELECT nome || ' ' || sobrenome AS nome_completo FROM clientes;
+No exemplo acima, usamos || (em alguns bancos) para concatenar nome e sobrenome.
+
