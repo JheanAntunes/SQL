@@ -39,13 +39,16 @@ TRUNCATE TABLE - Remove todos os registros de uma tabela, mas preserva sua estru
 ALIAS - TABLE | COLUNAS AS APELIDO TEMPORARIO
 
 LIKE
-%: Representa zero ou mais caracteres.
-_: Representa um único caractere.
+  %: Representa zero ou mais caracteres.
+  _: Representa um único caractere.
 
 BETWEEN - É usado para buscar valores dentro de um intervalo (números, data)
 
-UNION - O operador UNION combina os resultados de duas ou mais consultas, eliminando duplicatas por padrão. Os conjuntos devem ter o mesmo número e tipo de colunas para funcionar.
+UNION
+  O operador UNION combina os resultados de duas ou mais consultas, eliminando duplicatas por padrão. Os conjuntos devem ter o mesmo número e tipo de colunas para funcionar.
 
-INTERSECT - O operador INTERSECT retorna apenas as linhas que estão presentes em ambas as consultas.
+INTERSECT  
+  O operador INTERSECT retorna apenas as linhas que estão presentes em ambas as consultas.
 
-EXCEPT - O operador EXCEPT retorna as linhas que estão na primeira consulta, mas não estão na segunda.
+EXCEPT
+  O operador EXCEPT retorna as linhas que estão na primeira consulta, mas não estão na segunda.
