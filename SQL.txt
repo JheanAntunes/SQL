@@ -564,3 +564,20 @@ SELECT preço * quantidade AS total FROM vendas;
 SELECT nome || ' ' || sobrenome AS nome_completo FROM clientes;
 No exemplo acima, usamos || (em alguns bancos) para concatenar nome e sobrenome.
 
+# LIKE
+O operador LIKE é usado em consultas SQL para buscar padrões específicos em colunas de texto. Ele funciona com curingas para tornar as buscas flexíveis:
+
+%: Representa zero ou mais caracteres.
+´´
+SELECT * FROM clientes
+WHERE nome LIKE 'Jo%';
+´´
+Isso vai retornar todos os clientes cujos nomes começam com "Jo", como "Joana" ou "José".
+
+Outro exemplo:
+_: Representa um único caractere.
+``
+SELECT * FROM produtos
+WHERE descricao LIKE '_ola';
+``
+Isso busca algo como "bola", "cola", etc., já que o _ exige exatamente um caractere antes de "ola".

@@ -37,3 +37,7 @@ DROP INDEX - Remove índices de uma tabela.
 TRUNCATE TABLE - Remove todos os registros de uma tabela, mas preserva sua estrutura.
 
 ALIAS - TABLE | COLUNAS AS APELIDO TEMPORARIO
+
+LIKE
+%: Representa zero ou mais caracteres.
+_: Representa um único caractere.
