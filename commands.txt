@@ -41,3 +41,5 @@ ALIAS - TABLE | COLUNAS AS APELIDO TEMPORARIO
 LIKE
 %: Representa zero ou mais caracteres.
 _: Representa um único caractere.
+
+BETWEEN - É usado para buscar valores dentro de um intervalo (números, data)

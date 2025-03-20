@@ -581,3 +581,20 @@ SELECT * FROM produtos
 WHERE descricao LIKE '_ola';
 ``
 Isso busca algo como "bola", "cola", etc., já que o _ exige exatamente um caractere antes de "ola".
+
+# BETWEEN
+O operador BETWEEN é usado para buscar valores dentro de um intervalo. Ele funciona para tipos como números, datas e até texto (seguindo a ordem alfabética).
+
+- Exemplo com números:
+``
+SELECT * FROM vendas
+WHERE preco BETWEEN 50 AND 100;
+``
+Isso retorna todas as vendas com preços entre 50 e 100, incluindo os limites.
+
+Exemplo com datas:
+``
+SELECT * FROM pedidos
+WHERE data BETWEEN '2025-01-01' AND '2025-03-31';
+``
+Aqui, você vai obter todos os pedidos feitos nesse trimestre.
