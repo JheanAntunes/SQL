@@ -554,47 +554,79 @@ CHECK: Define uma condição para os valores de uma coluna:
 DEFAULT: Especifica um valor padrão para uma coluna, caso não seja fornecido nenhum valor:
 
 # Teoria por Trás dos Alias
-Um alias é simplesmente um nome alternativo, temporário e amigável atribuído a colunas ou tabelas dentro de uma consulta SQL. Ele serve para melhorar a legibilidade do código ou facilitar a referência a elementos complexos (como colunas calculadas ou subconsultas). Um alias não altera os nomes reais no banco de dados, apenas os renomeia durante a execução da consulta.
+	Um alias é simplesmente um nome alternativo, temporário e amigável atribuído a colunas ou tabelas dentro de uma consulta SQL. Ele serve para melhorar a legibilidade do código ou facilitar a referência a elementos complexos (como colunas calculadas ou subconsultas). Um alias não altera os nomes reais no banco de dados, apenas os renomeia durante a execução da consulta.
 
 Expressões em SQL
-As expressões são usadas para realizar operações ou cálculos no SELECT. Elas podem incluir operadores aritméticos, funções, concatenações de strings e muito mais. Exemplos de expressões comuns incluem:
+	As expressões são usadas para realizar operações ou cálculos no SELECT. Elas podem incluir operadores aritméticos, funções, concatenações de strings e muito mais. Exemplos de expressões comuns incluem:
 
-SELECT preço * quantidade AS total FROM vendas;
+	SELECT preço * quantidade AS total FROM vendas;
 
-SELECT nome || ' ' || sobrenome AS nome_completo FROM clientes;
-No exemplo acima, usamos || (em alguns bancos) para concatenar nome e sobrenome.
+	SELECT nome || ' ' || sobrenome AS nome_completo FROM clientes;
+	No exemplo acima, usamos || (em alguns bancos) para concatenar nome e sobrenome.
 
 # LIKE
-O operador LIKE é usado em consultas SQL para buscar padrões específicos em colunas de texto. Ele funciona com curingas para tornar as buscas flexíveis:
-
-%: Representa zero ou mais caracteres.
+	O operador LIKE é usado em consultas SQL para buscar padrões específicos em colunas de texto. Ele funciona com curingas para tornar as buscas flexíveis:
+	%: Representa zero ou mais caracteres.
 ´´
-SELECT * FROM clientes
-WHERE nome LIKE 'Jo%';
+	SELECT * FROM clientes
+	WHERE nome LIKE 'Jo%';
 ´´
-Isso vai retornar todos os clientes cujos nomes começam com "Jo", como "Joana" ou "José".
+	Isso vai retornar todos os clientes cujos nomes começam com "Jo", como "Joana" ou "José".
 
-Outro exemplo:
-_: Representa um único caractere.
+# Outro exemplo:
+	_: Representa um único caractere.
 ``
-SELECT * FROM produtos
-WHERE descricao LIKE '_ola';
+	SELECT * FROM produtos
+	WHERE descricao LIKE '_ola';
 ``
-Isso busca algo como "bola", "cola", etc., já que o _ exige exatamente um caractere antes de "ola".
+	Isso busca algo como "bola", "cola", etc., já que o _ exige exatamente um caractere antes de "ola".
 
 # BETWEEN
-O operador BETWEEN é usado para buscar valores dentro de um intervalo. Ele funciona para tipos como números, datas e até texto (seguindo a ordem alfabética).
+	O operador BETWEEN é usado para buscar valores dentro de um intervalo. Ele funciona para tipos como números, datas e até texto (seguindo a ordem alfabética).
+	- Exemplo com números:
+``
+	SELECT * FROM vendas
+	WHERE preco BETWEEN 50 AND 100;
+``
+	Isso retorna todas as vendas com preços entre 50 e 100, incluindo os limites.
 
-- Exemplo com números:
+# Exemplo com datas:
 ``
-SELECT * FROM vendas
-WHERE preco BETWEEN 50 AND 100;
+	SELECT * FROM pedidos
+	WHERE data BETWEEN '2025-01-01' AND '2025-03-31';
 ``
-Isso retorna todas as vendas com preços entre 50 e 100, incluindo os limites.
+	Aqui, você vai obter todos os pedidos feitos nesse trimestre.
 
-Exemplo com datas:
+# UNION
+	O operador UNION combina os resultados de duas ou mais consultas, eliminando duplicatas por padrão. Os conjuntos devem ter o mesmo número e tipo de colunas para funcionar.
 ``
-SELECT * FROM pedidos
-WHERE data BETWEEN '2025-01-01' AND '2025-03-31';
+	SELECT nome, email FROM clientes_brasil
+	UNION
+	SELECT nome, email FROM clientes_mexico;
 ``
-Aqui, você vai obter todos os pedidos feitos nesse trimestre.
+	Esse comando retorna uma lista unificada de clientes do Brasil e do México, sem duplicatas.
+
+# INTERSECT
+	O operador INTERSECT retorna apenas as linhas que estão presentes em ambas as consultas.
+``
+	SELECT nome FROM clientes_brasil
+	INTERSECT
+	SELECT nome FROM clientes_mexico;
+``
+	Isso mostrará apenas os clientes que estão tanto na base do Brasil quanto na do México.
+
+# EXCEPT
+	O operador EXCEPT retorna as linhas que estão na primeira consulta, mas não estão na segunda.
+``
+	SELECT nome FROM clientes_brasil
+	EXCEPT
+	SELECT nome FROM clientes_mexico;
+``
+	Isso listará os clientes que estão apenas no Brasil e não no México.
+
+Considerações:
+	Essas operações seguem a estrutura de colunas compatíveis (mesmo número e tipo de colunas).
+
+	A ordem das colunas e os nomes das tabelas podem importar para interpretações mais complexas.
+
+	O suporte a INTERSECT e EXCEPT pode variar entre bancos de dados (alguns, como o MySQL, não possuem nativamente, mas há alternativas).
