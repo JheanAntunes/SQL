@@ -66,3 +66,10 @@ IN com subconsultas:
       FROM Departamentos
       WHERE Nome = 'Recursos Humanos'
   );
+
+# Cláusulas
+  EXISTS: TRUE se o resultado da consulta aninhada contiver pelo menos uma tupla;
+
+  NOT EXISTS: TRUE se o resultado da consulta aninhada não contiver tuplas;
+
+  UNIQUE: Retornar TRUE se é único;

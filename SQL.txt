@@ -636,3 +636,10 @@ Uma Nested Query (ou consulta aninhada)
 
 A keyword IN em SQL 
 	é usada para especificar múltiplos valores em uma cláusula WHERE. É uma maneira prática de verificar se um valor está dentro de uma lista de valores fornecidos, em vez de usar várias condições combinadas com OR. Isso simplifica e torna as consultas mais legíveis.
+
+=== Cláusulas
+	EXISTS: TRUE se o resultado da consulta aninhada contiver pelo menos uma tupla;
+
+	NOT EXISTS: TRUE se o resultado da consulta aninhada não contiver tuplas;
+
+	UNIQUE: Retornar TRUE se é único;
