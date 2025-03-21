@@ -643,3 +643,6 @@ A keyword IN em SQL
 	NOT EXISTS: TRUE se o resultado da consulta aninhada não contiver tuplas;
 
 	UNIQUE: Retornar TRUE se é único;
+
+# SQL ORDER  BY
+	A cláusula SQL ORDER BY é usada para organizar os resultados de uma consulta em ordem ascendente (ASC) ou descendente (DESC), com base em uma ou mais colunas. Por padrão, a ordem é crescente.
