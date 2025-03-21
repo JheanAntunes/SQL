@@ -23,7 +23,7 @@ ALTER TABLE - Modifica a estrutura de uma tabela existente (por exemplo, adicion
 
 JOIN - Combina registros de duas ou mais tabelas com base em uma condição.
 
-WHERE - Filtro usado para especificar condições em uma consulta.
+WHERE - A cláusula SQL WHERE é usada para filtrar registros de uma tabela com base em condições específicas. Apenas as tuplas que atendem à condição especificada na cláusula serão retornadas no resultado da consulta.
 
 GROUP BY - Agrupa resultados com base em uma ou mais colunas.
 
@@ -73,3 +73,12 @@ IN com subconsultas:
   NOT EXISTS: TRUE se o resultado da consulta aninhada não contiver tuplas;
 
   UNIQUE: Retornar TRUE se é único;
+
+# ORDER BY
+  SELECT nome, idade
+  FROM pessoas
+  ORDER BY nome;
+
+  SELECT nome, idade, cidade
+  FROM pessoas
+  ORDER BY idade DESC, nome ASC;
