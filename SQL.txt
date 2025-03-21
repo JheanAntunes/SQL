@@ -630,3 +630,6 @@ Considerações:
 	A ordem das colunas e os nomes das tabelas podem importar para interpretações mais complexas.
 
 	O suporte a INTERSECT e EXCEPT pode variar entre bancos de dados (alguns, como o MySQL, não possuem nativamente, mas há alternativas).
+
+Uma Nested Query (ou consulta aninhada)
+	em SQL é uma consulta dentro de outra consulta. A consulta interna (ou subconsulta) é executada primeiro e o resultado é usado pela consulta externa. Essas subconsultas são geralmente usadas em instruções SELECT, INSERT, UPDATE ou DELETE para realizar operações mais complexas ou filtragens.

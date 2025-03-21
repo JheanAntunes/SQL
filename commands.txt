@@ -7,6 +7,7 @@ USE - entrar no database
 DESC - visualizar colunas da tabela
 
 SELECT - Usado para consultar e recuperar dados de uma tabela.
+ Nested Query 
 
 INSERT INTO - Insere novos dados em uma tabela.
 
