@@ -53,3 +53,16 @@ INTERSECT
 
 EXCEPT
   O operador EXCEPT retorna as linhas que estão na primeira consulta, mas não estão na segunda.
+
+Keyword IN
+  SELECT Nome
+  FROM Clientes
+  WHERE Cidade IN ('São Paulo', 'Rio de Janeiro', 'Belo Horizonte');
+IN com subconsultas:
+  SELECT Nome
+  FROM Funcionarios
+  WHERE DepartamentoID IN (
+      SELECT ID
+      FROM Departamentos
+      WHERE Nome = 'Recursos Humanos'
+  );

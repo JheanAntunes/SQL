@@ -633,3 +633,6 @@ Considerações:
 
 Uma Nested Query (ou consulta aninhada)
 	em SQL é uma consulta dentro de outra consulta. A consulta interna (ou subconsulta) é executada primeiro e o resultado é usado pela consulta externa. Essas subconsultas são geralmente usadas em instruções SELECT, INSERT, UPDATE ou DELETE para realizar operações mais complexas ou filtragens.
+
+A keyword IN em SQL 
+	é usada para especificar múltiplos valores em uma cláusula WHERE. É uma maneira prática de verificar se um valor está dentro de uma lista de valores fornecidos, em vez de usar várias condições combinadas com OR. Isso simplifica e torna as consultas mais legíveis.
