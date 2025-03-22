@@ -646,3 +646,7 @@ A keyword IN em SQL
 
 # SQL ORDER  BY
 	A cláusula SQL ORDER BY é usada para organizar os resultados de uma consulta em ordem ascendente (ASC) ou descendente (DESC), com base em uma ou mais colunas. Por padrão, a ordem é crescente.
+
+# Agrupamento de Registros;
+	Agregar | Aglutinar | agrupar
+	O GROUP BY é uma cláusula no SQL usada para agrupar linhas que têm valores semelhantes em colunas específicas. Ele é muito útil para agregar dados e gerar resumos usando funções como COUNT(), SUM(), AVG(), MAX() e MIN().

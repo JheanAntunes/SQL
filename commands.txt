@@ -82,3 +82,13 @@ IN com subconsultas:
   SELECT nome, idade, cidade
   FROM pessoas
   ORDER BY idade DESC, nome ASC;
+
+=== Agregaões
+# COUNT() no SQL é usada para contar o número de registros em uma consulta
+
+# GROUP BY
+  COUNT(), 
+  SUM(), 
+  AVG(), 
+  AX(),
+  MIN()
