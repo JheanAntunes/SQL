@@ -1,0 +1,6 @@
+SELECT <Attribute and function list>
+FROM <Table list>
+[Where <condition>]
+[GROUP BY <grouping Attribute(s)>]
+[Having <group condition>]
+[ORDER BY <attribute list>]
