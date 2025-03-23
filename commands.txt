@@ -92,3 +92,9 @@ IN com subconsultas:
   AVG(), 
   AX(),
   MIN()
+
+# CASE 
+    WHEN <Condition> THEN 'Value' 
+    WHEN <Condition> THEN 'Value' 
+    ELSE 'Default' 
+  END as name_of_attribute

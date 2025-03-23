@@ -650,3 +650,12 @@ A keyword IN em SQL
 # Agrupamento de Registros;
 	Agregar | Aglutinar | agrupar
 	O GROUP BY é uma cláusula no SQL usada para agrupar linhas que têm valores semelhantes em colunas específicas. Ele é muito útil para agregar dados e gerar resumos usando funções como COUNT(), SUM(), AVG(), MAX() e MIN().
+
+==== Join ==== 
+
+# CASE WHEN THEN ELSE END
+	A declaração CASE é usada para realizar condições dentro de uma consulta SQL e retornar valores baseados nessas condições. Ela é parecida com um "if-else" em programação.
+	Dicas:
+	Você pode usar o CASE em praticamente qualquer lugar: em SELECT, WHERE, UPDATE, ORDER BY ou até mesmo HAVING.
+
+	É uma ótima maneira de criar categorias e personalizar os resultados da sua consulta.
