@@ -652,6 +652,22 @@ A keyword IN em SQL
 	O GROUP BY é uma cláusula no SQL usada para agrupar linhas que têm valores semelhantes em colunas específicas. Ele é muito útil para agregar dados e gerar resumos usando funções como COUNT(), SUM(), AVG(), MAX() e MIN().
 
 ==== Join ==== 
+O que é JOIN?
+	O JOIN é usado para combinar linhas de duas ou mais tabelas com base em uma condição lógica.
+	Geralmente, relacionamos tabelas usando uma chave primária de uma tabela e uma chave estrangeira de outra.
+
+Tipos de JOIN:
+	INNER JOIN (ou simplesmente JOIN): Retorna apenas as linhas que têm correspondência em ambas as tabelas.
+
+	LEFT JOIN (ou LEFT OUTER JOIN): Retorna todas as linhas da tabela à esquerda (A), mesmo que não haja correspondência na tabela à direita (B). Linhas sem correspondência em B terão valores NULL.
+
+	RIGHT JOIN (ou RIGHT OUTER JOIN): Retorna todas as linhas da tabela à direita (B), mesmo que não haja correspondência na tabela à esquerda (A). Linhas sem correspondência em A terão valores NULL.
+
+	FULL JOIN (ou FULL OUTER JOIN): Retorna todas as linhas de ambas as tabelas. Linhas sem correspondência em uma das tabelas terão valores NULL.
+
+	CROSS JOIN: Retorna o produto cartesiano de ambas as tabelas (todas as combinações possíveis de linhas entre as tabelas).
+
+	SELF JOIN: É um JOIN de uma tabela com ela mesma. Útil para comparar linhas dentro da mesma tabela.
 
 # CASE WHEN THEN ELSE END
 	A declaração CASE é usada para realizar condições dentro de uma consulta SQL e retornar valores baseados nessas condições. Ela é parecida com um "if-else" em programação.
