@@ -98,3 +98,13 @@ IN com subconsultas:
     WHEN <Condition> THEN 'Value' 
     ELSE 'Default' 
   END as name_of_attribute
+
+#Tipos de JOIN:
+  INNER JOIN (ou simplesmente JOIN): Retorna apenas as linhas que têm correspondência em ambas as tabelas.
+  `
+    SELECT A.coluna1, B.coluna2
+    FROM tabelaA A
+    INNER JOIN tabelaB B
+    ON A.chave = B.chave;
+  `
+  
