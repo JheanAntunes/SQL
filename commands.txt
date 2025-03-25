@@ -107,4 +107,17 @@ IN com subconsultas:
     INNER JOIN tabelaB B
     ON A.chave = B.chave;
   `
-  
+  LEFT JOIN (ou LEFT OUTER JOIN): Retorna todas as linhas da tabela à esquerda (A), mesmo que não haja correspondência na tabela à direita (B). Linhas sem correspondência em B terão valores NULL.
+  `
+    SELECT A.coluna1, B.coluna2
+    FROM tabelaA A
+    LEFT JOIN tabelaB B
+    ON A.chave = B.chave;
+  `
+  RIGHT JOIN (ou RIGHT OUTER JOIN): Retorna todas as linhas da tabela à direita (B), mesmo que não haja correspondência na tabela à esquerda (A). Linhas sem correspondência em A terão valores NULL.
+  `
+    SELECT A.coluna1, B.coluna2
+    FROM tabelaA A
+    RIGHT JOIN tabelaB B
+    ON A.chave = B.chave;
+  `
