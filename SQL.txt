@@ -674,4 +674,29 @@ Tipos de JOIN:
 	Dicas:
 	Você pode usar o CASE em praticamente qualquer lugar: em SELECT, WHERE, UPDATE, ORDER BY ou até mesmo HAVING.
 
-	É uma ótima maneira de criar categorias e personalizar os resultados da sua consulta.
+	É uma ótima maneira de criar categorias e personalizar os resultados dsa sua consulta.
+
+# O que são views?
+	Uma view (ou visão) é essencialmente uma consulta armazenada no banco de dados, que pode ser tratada como uma tabela virtual. Essa tabela virtual não armazena dados diretamente; em vez disso, ela exibe os dados provenientes de outras tabelas, baseando-se na consulta que a define. Pense nisso como uma "janela" para os dados, que facilita visualizações personalizadas e organizadas.
+
+# Por que utilizar views?
+	Aqui estão alguns motivos principais para utilizar views:
+	
+	1. Simplicidade: Elas podem simplificar consultas complexas. Por exemplo, se você tem uma consulta complicada que é usada frequentemente, pode transformá-la em uma view.
+	
+	2. Segurança: É possível restringir o acesso a determinados dados. Por exemplo, você pode criar uma view que só mostre certas colunas de uma tabela, ocultando outras.
+
+	3. Manutenção de dados: Ajuda a criar camadas de abstração. Se a estrutura das tabelas subjacentes mudar, basta ajustar a view, sem a necessidade de alterar as consultas em várias partes do aplicativo.
+
+	4. Reutilização: Podem ser reutilizadas em diferentes partes do sistema, reduzindo redundâncias no código SQL.
+
+# Restrições e limitações de views
+	Apesar dos benefícios, as views têm algumas restrições e limitações:
+
+	1. Somente leitura: Algumas views podem ser somente leitura, especialmente se contiverem operações complexas como JOIN, agregações (SUM, AVG), ou DISTINCT.
+
+	2. Performance: Como são baseadas em consultas, o uso excessivo de views pode impactar o desempenho, especialmente em bancos com grande volume de dados.
+
+	3. Atualizações: Nem todas as views podem ser atualizadas diretamente. Quando possível, isso depende de como a view foi definida
+	
+	4. Dependência: Alterações na estrutura das tabelas subjacentes podem exigir ajustes nas views  
