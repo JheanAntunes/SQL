@@ -121,3 +121,27 @@ IN com subconsultas:
     RIGHT JOIN tabelaB B
     ON A.chave = B.chave;
   `
+
+# VIEW
+  
+  CREATE VIEW [db_name.] view_name [(column_list)] AS select-statement [1]
+
+  -- Criando uma view chamada "clientes_ativos"
+  CREATE VIEW clientes_ativos AS
+  SELECT nome, email
+  FROM clientes
+  WHERE status = 'ativo';
+
+  -- Usando a view
+  SELECT * FROM clientes_ativos;
+
+  Nesse exemplo, criamos uma view chamada , que exibe apenas os clientes com status ativo. Toda vez que consultamos , estamos executando a lógica definida pela view
+
+  Para modificar uma view existente:
+    CREATE OR REPLACE VIEW clientes_ativos AS
+    SELECT nome, email, telefone
+    FROM clientes
+    WHERE status = 'ativo';
+
+  Para excluir uma view:
+    DROP VIEW clientes_ativos;
