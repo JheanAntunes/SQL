@@ -700,3 +700,12 @@ Tipos de JOIN:
 	3. Atualizações: Nem todas as views podem ser atualizadas diretamente. Quando possível, isso depende de como a view foi definida
 	
 	4. Dependência: Alterações na estrutura das tabelas subjacentes podem exigir ajustes nas views  
+
+# Atomicidade - ACID
+	A atomicidade significa que uma transação no banco de dados deve ser tratada como uma unidade única e indivisível. Ou seja, ou todas as operações dentro de uma transação são concluídas com sucesso, ou nenhuma delas é aplicada. Isso evita que dados sejam deixados em um estado inconsistente.
+
+	Por exemplo, imagine que você está transferindo dinheiro de uma conta para outra:
+	1. Debitar da Conta A.
+	2. Creditar na Conta B
+	
+	Se ocorrer um erro depois de debitar a Conta A, mas antes de creditar na Conta B, a atomicidade garante que a transação será revertida, mantendo as contas como estavam antes da operaç
