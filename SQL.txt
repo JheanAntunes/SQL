@@ -709,3 +709,34 @@ Tipos de JOIN:
 	2. Creditar na Conta B
 	
 	Se ocorrer um erro depois de debitar a Conta A, mas antes de creditar na Conta B, a atomicidade garante que a transação será revertida, mantendo as contas como estavam antes da operaç
+
+# SQL Dinamico
+	SQL dinâmico é uma técnica utilizada para construir instruções SQL de forma flexível e adaptável. Ou seja, em vez de escrever consultas SQL estáticas, podemos criar scripts que geram essas consultas dinamicamente com base em variáveis ou condições específicas. Isso é especialmente útil quando precisamos adaptar a consulta de acordo com os dados fornecidos pelo usuário ou requisitos específicos do programa.
+	
+	# Por que usar SQL dinâmico?
+		Adaptabilidade: Permite construir consultas em tempo de execução.
+		Flexibilidade: Ideal para cenários onde não sabemos antecipadamente a estrutura exata da consulta.
+		Automatização: Reduz a necessidade de criar múltiplas consultas estáticas para diferentes cenários.
+	
+	Como funciona na prática? Vamos ao exemplo! Imagine que queremos consultar uma tabela chamada "Produtos" e filtrar os resultados com base em critérios que só descobriremos na execução. O SQL dinâmico pode ser criado assim:
+	DECLARE @sql NVARCHAR(MAX);
+	DECLARE @categoria NVARCHAR(50);
+
+	SET @categoria = 'Eletrônicos';
+
+	SET @sql = 'SELECT * FROM Produtos WHERE Categoria = ''' + @categoria + '''';
+
+	EXEC sp_executesql @sql;
+
+	A variável @categoria armazena o filtro desejado
+	A instrução SQL é concatenada usando a variável, criando uma consulta personalizada.
+	sp_executesql executa o SQL dinâmico gerado.
+
+	# Cuidados ao usar SQL dinâmico:
+		Segurança: Evite vulnerabilidades de SQL Injection. Sempre valide os dados inseridos pelo usuário
+		
+		Desempenho: Pode ser menos eficiente do que consultas estáticas. Use com moderação.
+
+		Legibilidade: Pode dificultar a manutenção do código, então documente bem.
+
+# procedures
