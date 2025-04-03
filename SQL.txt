@@ -739,4 +739,31 @@ Tipos de JOIN:
 
 		Legibilidade: Pode dificultar a manutenção do código, então documente bem.
 
-# procedures
+# O que é uma stored procedure?
+	Uma stored procedure (ou "procedimento armazenado") é basicamente um conjunto de comandos SQL que é salvo no banco de dados e pode ser reutilizado sempre que necessário. Pense nela como uma função no mundo da programação: você escreve o código uma vez, armazena no banco e pode chamá-lo sempre que precisar executar aquela lógica.
+	
+	# Por que usar stored procedures?
+		- Reutilização: Pode ser chamada várias vezes sem precisar escrever o mesmo código repetidamente.
+		- Eficiência: Reduz o tráfego entre a aplicação e o banco de dados, já que o código é executado no servidor de banco.
+		- Segurança: Pode controlar o acesso, permitindo que usuários executem a procedure sem precisar visualizar diretamente os dados do banco
+		- Manutenção: Facilita as alterações, pois você edita o código em um único lugar.
+	
+	# Exemplo de stored procedure:
+		Vamos criar uma procedure que retorna os produtos de uma determinada categoria:
+		CREATE PROCEDURE GetProdutosPorCategoria
+    @Categoria NVARCHAR(50) -- variable
+		AS
+		BEGIN -- inicio
+				SELECT * FROM Produtos
+				WHERE Categoria = @Categoria;
+		END; -- fim
+	Como usar essa stored procedure?
+	Depois de criar a procedure, podemos executá-la assim:
+	EXEC GetProdutosPorCategoria @Categoria = 'Eletrônicos';
+	
+	Vantagens adicionais:
+		Ajuda a organizar melhor o código SQL.
+		É ótima para cenários onde há muita lógica complexa.
+	
+	Cuidado:
+		Como em qualquer outro recurso, use com sabedoria para evitar consultas que possam afetar o desempenho do banco.
