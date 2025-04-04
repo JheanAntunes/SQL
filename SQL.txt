@@ -817,3 +817,39 @@ Tipos de JOIN:
 					SELECT @mensagem;
 			END $$
 		DELIMITER ;
+	Resultado: A execução termina com uma mensagem caso nenhum dado seja encontrado.
+
+	# Por que Usar Condition Handling?
+		- Robustez: Garante que o código lide com problemas sem falhas graves.
+		- Personalização: Permite mostrar mensagens mais informativas.
+		- Controle: Dá flexibilidade para decidir como proceder em diferentes situações.
+	
+	# 1. Objetivo e Uso
+		Procedures (Procedimentos): São usadas principalmente para executar ações complexas e processos. Podem incluir múltiplas operações como inserir, atualizar ou consultar dados.
+			Exemplo: Executar vários cálculos, modificar tabelas ou interagir com múltiplos registros.
+			Normalmente chamadas diretamente com CALL.
+		
+		Functions (Funções): São usadas para retornar um único valor baseado em um cálculo ou operação. Geralmente utilizadas dentro de queries SQL:
+			Exemplo: Retornar o total de vendas ou calcular impostos.
+			Chamadas diretamente em expressões SQL como SELECT minha_funcao().
+	
+	# 2. Forma de Chamada
+		CALL minha_procedure(parametros);
+		SELECT minha_funcao(parametros);
+	
+	# 3. Saída
+		Procedures: Podem ter múltiplas saídas, seja por meio de variáveis ou manipulação de tabelas. Elas não são usadas diretamente dentro de queries.
+
+		Functions: Devem retornar exatamente um valor (como números, textos ou resultados calculados), sendo frequentemente usadas dentro de .
+	
+	# 4. Utilização em Queries
+		Procedures: Não podem ser usadas diretamente em queries SQL, apenas chamadas com CALL.
+		
+		Functions: Podem ser integradas em queries SQL.
+			Exemplo:
+				SELECT minha_funcao(parametros) AS resultado;
+	
+	# 5. Manipulação de Dados
+		Procedures: Podem modificar dados, incluindo inserções, atualizações ou exclusões em tabelas.
+		
+		Functions: Não devem modificar dados diretamente; são limitadas ao cálculo e retorno de valores.
