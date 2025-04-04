@@ -767,3 +767,53 @@ Tipos de JOIN:
 	
 	Cuidado:
 		Como em qualquer outro recurso, use com sabedoria para evitar consultas que possam afetar o desempenho do banco.
+
+# O Que é Condition Handling?
+	Quando algo dá errado, como uma divisão por zero ou uma violação de restrição, o MySQL gera uma condição. Para lidar com essas condições, usamos handlers dentro de Stored Procedures ou Triggers. Um Handler informa ao SQL como reagir a um erro ou aviso específico
+	
+	# Estrutura Básica de um Handler
+		Um handler é configurado dentro de uma procedure com a seguinte estrutura:
+		DECLARE tipo_do_handler HANDLER FOR condição_específica 
+    ação_a_ser_executada;
+
+		tipo_do_handler: Define como o handler funciona
+			CONTINUE: Ignora o erro ou condição e prossegue para a próxima instrução.
+			EXIT Sai imediatamente da procedure ou bloco.
+		
+		condição_específica: Define o tipo de condição que o handler captura, como:
+			SQLEXCEPTION: Captura qualquer erro SQL.
+			SQLWARNING: Captura alertas.
+			NOT FOUND: Captura situações onde um resultado esperado não foi encontrado.
+	
+	# Exemplo 1: Tratando SQLEXCEPTION com CONTINUE
+		Imagine que queremos capturar erros e continuar a execução:
+		DELIMITER $$
+			CREATE PROCEDURE exemplo_handler()
+			BEGIN
+					DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+							SET @erro = 'Ocorreu um erro, mas estamos continuando!';
+					
+					-- Tentativa de divisão por zero (gera erro)
+					SET @resultado = 10 / 0;
+
+					-- O próximo código será executado mesmo após o erro
+					SET @mensagem = 'Execução continuada após o erro!';
+					SELECT @mensagem;
+			END $$
+		DELIMITER ;
+
+	# Exemplo 2: Tratando NOT FOUND com EXIT
+		Este exemplo lida com situações em que nenhum dado é encontrado, e encerra o bloco.
+		DELIMITER $$
+			CREATE PROCEDURE exemplo_not_found()
+			BEGIN
+					DECLARE EXIT HANDLER FOR NOT FOUND
+							SET @mensagem = 'Nenhum dado encontrado!';
+					
+					-- Tentativa de buscar um dado inexistente
+					SELECT nome INTO @resultado FROM usuarios WHERE id = -1;
+					
+					-- Se nenhum dado for encontrado, o handler será acionado
+					SELECT @mensagem;
+			END $$
+		DELIMITER ;
