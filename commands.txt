@@ -145,3 +145,57 @@ IN com subconsultas:
 
   Para excluir uma view:
     DROP VIEW clientes_ativos;
+
+# IF, ELSEIF, ELSE
+  SELECT IF(condição, valor_se_verdadeiro, valor_se_falso);
+  
+  2. Estrutura do IF em Funções Stored Procedures:
+  DELIMITER $$
+    CREATE PROCEDURE verifica_maioridade(IN idade INT, OUT resultado VARCHAR(20))
+    BEGIN
+        IF idade >= 18 THEN
+            SET resultado = 'Maior de idade';
+        ELSE
+            SET resultado = 'Menor de idade';
+        END IF;
+    END $$
+  DELIMITER ;
+  CALL verifica_maioridade(20, @resultado);
+  SELECT @resultado;
+
+# O que são estruturas de repetição em SQL?
+  Em SQL, usamos estruturas de repetição (ou loops) principalmente dentro de Stored Procedures para realizar ações repetitivas. O MySQL suporta três tipos principais de loops:
+  1. LOOP
+  2. WHILE
+  3. REPEAT
+    Cada um deles tem seu propósito, e vou explicar com exemplos simples e práticos.
+
+  1. LOOP (Básico e Controlado por Sinalizadores)
+    O loop continua executando até que você o encerre explicitamente com um comando LEAVE.
+    Sintaxe:
+      LOOP
+        -- Ações dentro do loop
+        IF condição THEN
+            LEAVE nome_do_loop; -- Sai do loop quando a condição for verdadeira
+        END IF;
+      END LOOP
+  
+  2. WHILE (Executa Enquanto a Condição é Verdadeira)    
+    O while executa um bloco de código enquanto uma condição for verdadeira.
+    Sintaxe:
+      WHILE condição DO
+        -- Ações dentro do loop
+      END WHILE;
+  
+  3. REPEAT (Executa Até que a Condição Seja Verdadeira)
+    O  é parecido com o , mas garante que o bloco seja executado pelo menos uma vez antes de checar a condição.
+    Sintaxe:
+      REPEAT
+        -- Ações dentro do loop
+        UNTIL condição
+      END REPEAT;
+
+  # Diferenças entre os Loops
+    LOOP: Simples e controlado manualmente com LEAVE.
+    WHILE: Continua enquanto a condição for verdadeira.
+    REPEAT: Continua até que a condição se torne verdadeira (garante execução inicial).
