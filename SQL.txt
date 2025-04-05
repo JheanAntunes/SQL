@@ -748,6 +748,19 @@ Tipos de JOIN:
 		- Segurança: Pode controlar o acesso, permitindo que usuários executem a procedure sem precisar visualizar diretamente os dados do banco
 		- Manutenção: Facilita as alterações, pois você edita o código em um único lugar.
 	
+	# Procedures Parametros
+		IN (Parâmetro de Entrada)
+			- O que é? É usado para passar valores para a procedure.
+			- Característica: Os valores do parâmetro não podem ser alterados dentro da procedure. Eles são apenas lidos.
+		
+		OUT (Parâmetro de Saída)
+			- O que é? É usado para retornar valores da procedure para quem a chamou.
+			- Característica: Não tem valor inicial; ele será atribuído dentro da procedure.
+
+		INOUT (Parâmetro de Entrada e Saída)
+			- O que é? É usado para receber um valor como entrada e retornar um valor como saída.
+			- Característica: Permite modificar o valor do parâmetro dentro da procedure.
+
 	# Exemplo de stored procedure:
 		Vamos criar uma procedure que retorna os produtos de uma determinada categoria:
 		CREATE PROCEDURE GetProdutosPorCategoria
