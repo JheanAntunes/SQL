@@ -199,3 +199,16 @@ IN com subconsultas:
     LOOP: Simples e controlado manualmente com LEAVE.
     WHILE: Continua enquanto a condição for verdadeira.
     REPEAT: Continua até que a condição se torne verdadeira (garante execução inicial).
+
+# Triggers
+DELIMITER //
+CREATE TRIGGER nome_do_trigger
+[BEFORE | AFTER] [INSERT | UPDATE | DELETE]
+ON nome_da_tabela
+FOR EACH ROW
+BEGIN
+    -- Lógica do trigger aqui
+    -- Pode incluir condições, validações, mensagens de erro ou outras ações.
+END;
+//
+DELIMITER ;

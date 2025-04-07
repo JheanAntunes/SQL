@@ -866,3 +866,13 @@ Tipos de JOIN:
 		Procedures: Podem modificar dados, incluindo inserções, atualizações ou exclusões em tabelas.
 		
 		Functions: Não devem modificar dados diretamente; são limitadas ao cálculo e retorno de valores.
+
+# Assertions no MySQL:
+	CHECK constraints: O MySQL não oferece suporte direto a essa funcionalidade, comum em outros bancos de dados.
+
+	Alternativas: Verificações podem ser simuladas com triggers ou através da lógica no seu aplicativo.
+
+# Implementação com Triggers:
+	Triggers permitem executar ações antes ou depois de eventos como inserções ou atualizações.
+
+	Exemplo: Validar se a idade é maior ou igual a 18 antes de inserir na tabela pessoas;
