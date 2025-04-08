@@ -876,3 +876,51 @@ Tipos de JOIN:
 	Triggers permitem executar ações antes ou depois de eventos como inserções ou atualizações.
 
 	Exemplo: Validar se a idade é maior ou igual a 18 antes de inserir na tabela pessoas;
+	CREATE TRIGGER valida_idade_insere 
+		BEFORE INSERT ON pessoas 
+		FOR EACH ROW 
+		BEGIN
+				IF NEW.idade < 18 THEN
+						INSERT INTO mensagens_erro (mensagem) VALUES ('Idade deve ser maior ou igual a 18.');
+						SIGNAL SQLSTATE '45000'
+						SET MESSAGE_TEXT = 'Erro de validação no trigger.';
+				END IF;
+		END;
+
+# Principais cenários em que é ideal usar triggers:
+	1. Garantia de Integridade dos Dados
+		Quando você quer assegurar que regras específicas de negócios ou restrições sejam aplicadas automaticamente.
+
+		Exemplo: Validar que a idade de um usuário seja maior ou igual a 18 antes de inserir o registro.
+
+	2. Auditoria de Dados (Histórico)
+		Para rastrear alterações ou eventos no banco de dados sem necessidade de intervenção manual.
+		
+		Exemplo: Registrar em uma tabela de logs quem alterou um registro ou o horário da alteração.
+				CREATE TRIGGER log_alteracao
+				AFTER UPDATE ON usuarios
+				FOR EACH ROW
+				INSERT INTO logs (usuario_id, data_alteracao)
+				VALUES (OLD.id, NOW());
+	
+	3. Automação de Tarefas Repetitivas
+		Executar ações automaticamente, como atualizar um status ou calcular valores derivados.
+	
+		Exemplo: Atualizar o estoque automaticamente quando um pedido é registrado.
+	
+	4. Aplicação de Regras de Negócio
+		Quando algumas regras precisam ser reforçadas automaticamente no banco.
+
+		Exemplo: Evitar que valores negativos sejam inseridos em uma coluna de saldo.
+	
+	5. Consistência entre Tabelas
+		Garantir consistência ou sincronização de dados entre tabelas relacionadas.
+
+		Exemplo: Excluir registros associados em uma tabela filha quando o registro correspondente na tabela pai é deletado (emular ON DELETE CASCADE).
+
+# Cuidados ao Usar Triggers:
+	1. Desempenho: Triggers podem impactar o desempenho se não forem bem projetados, especialmente em tabelas com grande volume de dados.
+
+	2. Complexidade: Evite lógica muito complexa em triggers, pois isso pode tornar a manutenção do banco de dados mais difícil.
+
+	3. Debugging: Localizar problemas em triggers pode ser desafiador, já que eles são executados automaticamente nos bastidores.
