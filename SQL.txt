@@ -924,3 +924,30 @@ Tipos de JOIN:
 	2. Complexidade: Evite lógica muito complexa em triggers, pois isso pode tornar a manutenção do banco de dados mais difícil.
 
 	3. Debugging: Localizar problemas em triggers pode ser desafiador, já que eles são executados automaticamente nos bastidores.
+
+# O que é uma indexação?
+	Um índice é uma estrutura de dados usada pelo banco de dados para localizar rapidamente os registros em uma tabela, sem precisar percorrer linha por linha. É como um índice de livro: você olha o índice, encontra a página, e vai direto à informação.
+
+	# Tipos de Índices no MySQL
+		1. Primary Key: É um índice único que identifica cada linha da tabela. Sempre é criado automaticamente quando você define a chave primária de uma tabela.
+
+		2. Unique Index: Garante que todos os valores no campo sejam únicos.
+
+		3. Index Normal: Um índice padrão que acelera as buscas, mas permite valores duplicados.
+
+		4. Full-Text Index: Usado para pesquisas de texto, ideal para campos que contêm grandes blocos de texto, como artigos ou descrições
+
+		5. Spatial Index: Usado para dados geoespaciais (no tipo de dado geometry).
+
+	# Como Criar um Índice?
+		Você pode criar índices ao definir a tabela ou posteriormente. Veja os exemplos
+		Ao criar uma tabela:
+		CREATE TABLE funcionarios (
+			id INT AUTO_INCREMENT PRIMARY KEY,
+			nome VARCHAR(50),
+			salario DECIMAL(10,2),
+			INDEX (nome)
+		);
+	
+		Após criar uma tabela:
+			CREATE INDEX idx_nome ON funcionarios(nome);
