@@ -925,12 +925,57 @@ Tipos de JOIN:
 
 	3. Debugging: Localizar problemas em triggers pode ser desafiador, já que eles são executados automaticamente nos bastidores.
 
-# O que é uma indexação?
-	Um índice é uma estrutura de dados usada pelo banco de dados para localizar rapidamente os registros em uma tabela, sem precisar percorrer linha por linha. É como um índice de livro: você olha o índice, encontra a página, e vai direto à informação.
+# Índices em MySQL
+	Quando você declara uma primary key, o sistema automaticamente cria um índice para otimizar a busca e manipulação dos dados. Mas o que exatamente é um índice?
+	Um índice é uma estrutura de dados utilizada para localizar registros em uma tabela de maneira eficiente. Em MySQL, os índices geralmente utilizam a estrutura de dados B+ tree (árvore B+), que organiza os valores de forma hierárquica, facilitando buscas rápidas.
+
+	Na memória, um índice armazena dois principais componentes:
+		1. Campo de indexação: Este é o valor utilizado para ordenar e identificar os registros.
+
+		2. Ponteiro: Um endereço que aponta para a localização física do registro no armazenamento (disco), onde os dados reais estão salvos
+
+	Dessa forma, o índice atua como um mapa, agilizando as operações de busca, inserção e atualização ao reduzir a necessidade de varrer toda a tabela.
+
+	# Como o MySQL Trabalha com Índices?
+		Quando você cria um índice não-clustered, como idx_nome, o MySQL armazena o índice como uma estrutura de dados separada (geralmente uma árvore B+) que contém:
+			1. Os valores indexados da coluna (nome, no caso do índice idx_nome).
+			2. Ponteiros para os registros reais na tabela. Esses ponteiros podem ser:
+				Para o índice clustered (em tabelas InnoDB), onde os dados reais estão armazenados.
+				Para o local no disco (em tabelas MyISAM).
+	
+		# Por Que Isso é Rápido?
+			Estrutura de Árvore B+:
+				Tanto o índice não-clustered quanto o índice clustered são armazenados como árvores B+. Essas árvores permitem acesso em tempo logarítmico 
+				
+				(O(log n)), o que significa que mesmo para tabelas muito grandes, o número de operações de busca é pequeno.
+				
+				Exemplo: Se você tiver 1 milhão de registros, a árvore B+ talvez precise de apenas 20 verificações para encontrar o valor.
+		
+		# Nenhum Percorrimento Linha a Linha:
+			Graças à estrutura de índice ordenado, o MySQL não precisa fazer uma varredura completa na tabela (full table scan).
+			
+			Ele vai diretamente ao registro desejado utilizando os índices e os ponteiros.
+		
+		# Como Isso Funciona na Prática
+			Vamos ilustrar como o índice idx_nome trabalha:
+			O índice idx_nome contém algo assim:
+				"Ana Costa" → Ponteiro para o índice clustered
+				"Carlos Mendes" → Ponteiro para o índice clustered
+				"Jhean Silva" → Ponteiro para o índice clustered
+				"Mariana Oliveira" → Ponteiro para o índice clustered
+			
+			Ao buscar 'Jhean Silva':
+				O MySQL localiza 'Jhean Silva' no índice idx_nome usando busca eficiente na árvore B+.
+				Depois, o ponteiro leva diretamente ao índice clustered.
+
+			No índice clustered, o MySQL acessa o registro completo, como
+				id: 1, nome: 'Jhean Silva', email: 'jhean@gmail.com', cidade: 'Rio de Janeiro'
+
+
 
 	# Tipos de Índices no MySQL
 		1. Primary Key: É um índice único que identifica cada linha da tabela. Sempre é criado automaticamente quando você define a chave primária de uma tabela.
-
+	
 		2. Unique Index: Garante que todos os valores no campo sejam únicos.
 
 		3. Index Normal: Um índice padrão que acelera as buscas, mas permite valores duplicados.
