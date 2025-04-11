@@ -970,9 +970,7 @@ Tipos de JOIN:
 
 			No índice clustered, o MySQL acessa o registro completo, como
 				id: 1, nome: 'Jhean Silva', email: 'jhean@gmail.com', cidade: 'Rio de Janeiro'
-
-
-
+				
 	# Tipos de Índices no MySQL
 		1. Primary Key: É um índice único que identifica cada linha da tabela. Sempre é criado automaticamente quando você define a chave primária de uma tabela.
 	
