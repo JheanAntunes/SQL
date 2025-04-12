@@ -994,3 +994,115 @@ Tipos de JOIN:
 	
 		Após criar uma tabela:
 			CREATE INDEX idx_nome ON funcionarios(nome);
+
+Os índices hash são uma técnica de indexação que utiliza funções de hash para mapear os valores de uma coluna diretamente para um local específico na tabela. Eles são extremamente rápidos para buscas exatas (ou seja, quando você busca por um valor exato em uma coluna), mas possuem limitações que precisam ser compreendidas para serem usados de forma eficiente.
+	
+	# Como Funciona um Índice Hash?
+		1 - Função de Hash:
+			A função de hash pega o valor da coluna e gera um código ou chave única chamado "hash". Por exemplo, o valor 'Jhean Silva' pode ser transformado em algo como AB123.
+
+	2 - Mapa de Hash: 
+		O banco de dados utiliza esse código para localizar diretamente o registro correspondente na tabela. É como usar um endereço único para acessar a linha desejada, sem precisar percorrer outros registros.
+
+	3 - Processo de Busca:- Quando você faz uma consulta como 
+		WHERE nome = 'Jhean Silva', o índice hash transforma 'Jhean Silva' na chave AB123 e acessa diretamente o local do dado. Isso elimina a necessidade de varreduras ou buscas sequenciais.
+
+	#Vantagens dos Índices Hash
+		1. Velocidade em Buscas Exatas:
+			índices hash são extremamente rápidos em consultas que usam igualdade (=). Por exemplo:
+				SELECT * FROM clientes WHERE nome = 'Jhean Silva';
+
+		2. Menor Overhead:
+			Consomem menos espaço do que outros tipos de índices, como os baseados em árvores B+.
+
+		3. Simples e Diretos:
+			São mais simples de implementar e gerenciar, já que lidam com um único mapeamento de valor para chave.
+
+	# Desvantagens dos Índices Hash
+		1. Inadequado para Consultas em Intervalo
+			Não funcionam bem em consultas como:
+				SELECT * FROM clientes WHERE id BETWEEN 10 AND 20;
+			Isso ocorre porque os índices hash não preservam a ordem dos valores.
+
+		2. Colisões de Hash:
+			Em casos raros, dois valores diferentes podem gerar o mesmo código de hash (colisão). O banco de dados precisa lidar com essas colisões, o que pode reduzir a eficiência
+
+		3. Incompatível com LIKE ou ORDER BY:
+			Consultas que usam LIKE '%Silva%' ou ordenação não se beneficiam de índices hash.
+
+		4. Dependente da Função de Hash:
+			A eficiência depende diretamente da qualidade da função de hash utilizada pelo sistema.
+
+	# Exemplo Prático
+		Embora o MySQL não utilize índices hash diretamente para tabelas InnoDB (que preferem árvores B+), você pode encontrá-los em outros sistemas, como o mecanismo de armazenamento Memory Engine no MySQL.
+
+		# Criação de Índice Hash no MySQL:
+			CREATE TABLE clientes (
+				id INT PRIMARY KEY,
+				nome VARCHAR(50),
+				email VARCHAR(100),
+				cidade VARCHAR(50)
+			) ENGINE=MEMORY;
+		CREATE INDEX idx_nome_hash ON clientes(nome) USING HASH;
+			Busca Exata:
+				SELECT * FROM clientes WHERE nome = 'Jhean Silva';
+			Nesse caso, o índice hash será usado para localizar 'Jhean Silva' de forma extremamente rápida.
+
+	# Quando Usar Índices Hash?
+		Índices hash são ideais para:
+			- Consultas que exigem igualdade exata (=).
+			- Colunas com valores únicos ou baixa cardinalidade (como identificadores ou status simples).
+		Eles não são recomendados para:
+			- Consultas em intervalos (BETWEEN, <, >) ou ordenadas (ORDER BY).
+			- Situações que exigem ordenação ou busca textual (LIKE).
+	
+	# Estrutura dos Índices Hash
+		Os índices hash não possuem ponteiros convencionais como índices não-clustered, mas em vez disso, utilizam diretamente uma função de hash para mapear valores da coluna a um local específico onde o registro correspondente pode ser acessado. Vamos explorar os conceitos envolvidos:
+	
+	# Busca Binária vs. Função de Hash
+		1. Função de Hash
+			- A função de hash transforma o valor em uma "chave hash". Essa chave serve como um identificador único que corresponde diretamente a um espaço ou local onde o dado é armazenado.
+
+			- Não é necessário realizar uma busca binária para encontrar o hash, porque o cálculo do hash é feito diretamente pelo algoritmo. O processo é instantâneo: dado o valor de entrada, a função gera o hash.
+
+		2. Localização do Dado no Disco:
+			- Uma vez que o valor é convertido em um hash, o índice hash mapeia diretamente para o local onde os dados estão armazenados. O banco de dados acessa o registro correspondente no disco ou na memória usando essa chave hash.
+
+	# O Fluxo de Busca com Índices Hash
+		Aqui está como funciona a busca com índices hash:
+			
+			1. Entrada: Quando você faz uma consulta como WHERE nome = 'Jhean Silva', o banco de dados aplica a função de hash para calcular o código hash de 'Jhean Silva'.
+			
+			2. Hash como Endereço: O código hash gerado é usado para acessar diretamente o bloco de memória ou disco que contém o registro desejado.
+			
+			3. Dado Real: Finalmente, o registro completo é lido e retornado na resposta da consulta.
+
+	# Por Que Índices Hash Não Fazem Busca Binária?
+		A busca binária é usada em estruturas ordenadas, como árvores B+. No caso dos índices hash:
+			- O dado não está ordenado; ele é mapeado diretamente por uma função de hash.
+			
+			- A eficiência da busca vem do fato de que o hash atua como uma referência direta ao local do registro.
+	O processo elimina a necessidade de percorrer ou comparar valores, tornando os índices hash ideais para buscas exatas.
+
+	# Como o Índice Hash Lida com Valores que Não Existem
+		Quando você usa uma cláusula como:
+			SELECT * FROM tabela WHERE coluna = 'Jhean Silva';
+		e 'Jhean Silva' não existe na tabela, o banco de dados ainda usa o índice hash. Aqui está o passo a passo:
+		
+		1 - Cálculo do Hash:- Primeiro, o valor 'Jhean Silva' é passado pela função hash e transformado em uma chave hash específica, como AB123.
+
+		2	- Acesso ao Local do Hash:- Com o índice hash, o banco de dados tenta acessar diretamente o local associado à chave AB123.
+
+		3 - Verificação de Existência:- No local mapeado pelo hash, o banco de dados verifica se há algum registro correspondente ao valor 'Jhean Silva'.
+			- Se houver um registro no local, ele é retornado.
+			- Se não houver nenhum registro (local vazio):- O banco reconhece que 'Jhean Silva' não existe.
+					- Isso elimina a necessidade de realizar uma varredura ou comparação completa na tabela.
+
+
+
+
+
+
+		
+
+
