@@ -1098,6 +1098,43 @@ Os índices hash são uma técnica de indexação que utiliza funções de hash 
 			- Se não houver nenhum registro (local vazio):- O banco reconhece que 'Jhean Silva' não existe.
 					- Isso elimina a necessidade de realizar uma varredura ou comparação completa na tabela.
 
+# Normalização
+	A normalização em banco de dados é um processo utilizado para organizar tabelas, eliminando redundâncias e inconsistências, e garantindo a integridade dos dados. Esse processo segue uma série de regras chamadas de formas normais, que ajudam a estruturar os dados de maneira eficiente.
+	
+	Aqui estão as principais formas normais:
+		- Primeira Forma Normal (1FN): Garante que todos os atributos sejam atômicos (não divisíveis) e que não haja grupos repetidos em uma tabela.
+		
+		- Segunda Forma Normal (2FN): Além das regras da 1FN, elimina dependências parciais, ou seja, cada atributo não-chave deve depender totalmente da chave primária.
+		
+		- Terceira Forma Normal (3FN): Vai além da 2FN, eliminando dependências transitivas, onde atributos não-chave não devem depender de outros atributos não-chave.
+		
+		- Forma Normal de Boyce-Codd (BCNF): Uma versão mais rigorosa da 3FN, que resolve algumas anomalias específicas.
+		
+		- Quarta e Quinta Formas Normais (4FN e 5FN): Tratam de dependências multivaloradas e junções complexas, sendo menos comuns em projetos práticos.
+
+	A normalização é essencial para evitar problemas como duplicação de dados e dificuldades de manutenção, tornando o banco de dados mais eficiente e fácil de gerenciar.
+	
+	# As anomalias em esquemas relacionais ocorrem quando a estrutura do banco de dados não está bem projetada, levando a problemas durante operações como inserção, exclusão e atualização de dados. Aqui estão os principais tipos de anomalias:
+
+	- Anomalia de Inserção: Ocorre quando não é possível inserir dados em uma tabela sem que outras informações desnecessárias sejam adicionadas. Por exemplo, em uma tabela que combina informações de funcionários e projetos, pode ser impossível adicionar um novo projeto sem associá-lo a um funcionário.
+
+	- Anomalia de Exclusão: Acontece quando a exclusão de um dado resulta na perda de informações importantes. Por exemplo, ao excluir um funcionário de uma tabela que também armazena informações sobre o departamento, pode-se perder os dados do departamento.
+
+	- Anomalia de Atualização: Surge quando a atualização de um dado precisa ser feita em várias linhas, aumentando o risco de inconsistências. Por exemplo, se o endereço de um departamento estiver duplicado em várias linhas, a atualização de uma linha pode deixar as outras desatualizadas.
+
+	Essas anomalias geralmente são resolvidas por meio da normalização, que organiza os dados em formas normais para evitar redundâncias e inconsistências.
+
+	# Dependências funcionais são relações entre atributos em uma tabela de banco de dados, onde o valor de um atributo determina o valor de outro. Elas são fundamentais para o design de bancos de dados relacionais e para o processo de normalização.
+	
+	Por exemplo, se em uma tabela de funcionários o número do funcionário determina o nome, o salário e a cidade, podemos dizer que esses atributos dependem funcionalmente do número do funcionário. Isso é representado como Número do Funcionário → Nome, Salário, Cidade.
+	
+	Existem diferentes tipos de dependências funcionais:
+		- Dependência Funcional Total: O atributo depende de toda a chave primária, especialmente em tabelas com chaves compostas.
+		- Dependência Funcional Parcial: O atributo depende apenas de parte da chave primária composta.
+		- Dependência Transitiva: Um atributo depende de outro que, por sua vez, depende de um terceiro.
+
+	Essas dependências ajudam a identificar redundâncias e inconsistências, tornando o banco de dados mais eficiente e organizado. 
+
 
 
 
