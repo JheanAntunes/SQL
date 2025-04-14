@@ -1134,12 +1134,3 @@ Os índices hash são uma técnica de indexação que utiliza funções de hash 
 		- Dependência Transitiva: Um atributo depende de outro que, por sua vez, depende de um terceiro.
 
 	Essas dependências ajudam a identificar redundâncias e inconsistências, tornando o banco de dados mais eficiente e organizado. 
-
-
-
-
-
-
-		
-
-
