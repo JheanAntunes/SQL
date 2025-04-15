@@ -1174,3 +1174,28 @@ Os índices hash são uma técnica de indexação que utiliza funções de hash 
 		CPF → Data de Nascimento
 		CPF → Endereço
 		CPF → Cidade → Estado
+
+	# A normalização por decomposição é uma técnica usada para melhorar o design de um banco de dados, dividindo tabelas maiores em tabelas menores e mais específicas, enquanto mantém a integridade dos dados. O objetivo principal é eliminar redundâncias, evitar anomalias (de inserção, exclusão e atualização) e garantir que o banco de dados esteja em uma forma normal adequada
+	
+	Como funciona a decomposição:
+		- Identificação de dependências funcionais: Primeiro, analisamos as dependências funcionais entre os atributos da tabela.
+		- Divisão em tabelas menores: Com base nas dependências, a tabela é dividida em tabelas menores, cada uma representando uma entidade ou relação específica.
+		- Preservação da integridade: Garantimos que as tabelas resultantes possam ser unidas novamente (via operações de junção) para reconstruir os dados originais sem perda de informações.
+
+	Exemplo prático:
+		Imagine uma tabela Funcionários_Projetos com os seguintes atributos:
+			- ID_Funcionário
+			- Nome_Funcionário
+			- ID_Projeto
+			- Nome_Projeto
+
+		Dependências funcionais
+			- ID_Funcionário → Nome_Funcionário
+			- ID_Projeto → Nome_Projeto
+
+		Decomposição:
+			- Tabela 1: Funcionários (ID_Funcionário, Nome_Funcionário)
+			- Tabela 2: Projetos (ID_Projeto, Nome_Projeto)
+			- Tabela 3: Funcionários_Projetos (ID_Funcionário, ID_Projeto)
+	
+		Essa decomposição elimina redundâncias, como a repetição do nome do funcionário ou do projeto em várias linhas.
