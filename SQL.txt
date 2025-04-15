@@ -1134,3 +1134,43 @@ Os índices hash são uma técnica de indexação que utiliza funções de hash 
 		- Dependência Transitiva: Um atributo depende de outro que, por sua vez, depende de um terceiro.
 
 	Essas dependências ajudam a identificar redundâncias e inconsistências, tornando o banco de dados mais eficiente e organizado. 
+
+	# Um grafo mínimo de dependências funcionais é uma representação visual que mostra as relações entre atributos em um esquema de banco de dados, destacando as dependências funcionais essenciais. Ele ajuda a identificar redundâncias e inconsistências, facilitando o processo de normalização.
+	No grafo:
+		- Os nós representam os atributos.
+		- As arestas indicam dependências funcionais, com o atributo determinante apontando para o atributo dependente.
+
+	Por exemplo, se temos uma dependência funcional como CPF → Nome, o grafo mostraria uma seta do nó "CPF" para o nó "Nome". O objetivo é simplificar o grafo, removendo dependências redundantes ou transitivas, deixando apenas as relações fundamentais.
+
+	# Exemplo de cenário:
+		Suponha que temos uma tabela com os seguintes atributos:
+		- CPF (chave primária)
+		- Nome
+		- Data de Nascimento
+		- Endereço
+		- Cidade
+		- Estado
+
+		E as dependências funcionais são:
+		- CPF → Nome, Data de Nascimento, Endereço, Cidade, Estado
+		- Cidade → Estado
+
+		Etapas para criar o grafo mínimo:
+		- Cada atributo será representado como um nó.
+		- As dependências funcionais diretas serão representadas como setas. Por exemplo, CPF → Nome terá uma seta do nó "CPF" para o nó "Nome".
+		- Removemos dependências transitivas. Por exemplo, se sabemos CPF → Cidade e Cidade → Estado, não precisamos representar CPF → Estado diretamente, pois é uma consequência transitiva.
+
+		Grafo mínimo:
+		- Nó Principal: CPF
+		- Dependências diretas:
+		- CPF → Nome
+		- CPF → Data de Nascimento
+		- CPF → Endereço
+		- CPF → Cidade
+		- Cidade → Estado
+
+		Graficamente, ele pode ser descrito assim:
+		CPF → Nome
+		CPF → Data de Nascimento
+		CPF → Endereço
+		CPF → Cidade → Estado
