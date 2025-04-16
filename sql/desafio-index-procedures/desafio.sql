@@ -26,12 +26,12 @@ BEGIN
 END $$ 
 DELIMITER ;
 
-call insertclient('phenthe', 'P', 'MOLHO', '15345672901', 'Rua das mudas, 173', @statusInsert);
+call insertclient('Sad', 'P', 'Set', '45345372901', 'Rua dos triste, 483', @statusInsert);
 select @statusInsert;
 
 drop procedure payments;
 DELIMITER $$
-CREATE PROCEDURE payments(
+CREATE PROCEDURE paymentscategoria(
 IN p_idPayment INT, 
 IN p_idCliente INT, 
 IN p_statusPayment BOOL, 
@@ -52,7 +52,22 @@ BEGIN
 END $$ 
 DELIMITER ;
 
-select * from clientes;
+select * from clientes as c JOIN payments as p on c.idCliente = p.idPayment;
 
-call payments(4, 4, TRUE, '2025-08-05', 'Cartão', 300.00, @statusInsertPayments);
+call payments(5, 5, TRUE, '2025-08-05', 'Cartão', 300.00, @statusInsertPayments);
 select @statusInsertPayments;
+
+show index from clientes;
+CREATE INDEX index_cpf ON clientes(cpf);
+
+CREATE INDEX index_Fname ON clientes(fname);
+/*
+idx not clusted João -> ponteiro aponta para o idx clusted -> mysql pega o ponteiro do idx-clusted que está referenciado o registro no armazenamento
+idx not clusted Maria -> ponteiro para idx clusted
+idx not clusted Pedro -> ponteiro para idx clusted
+idx not clusted phenthe -> ponteiro para idx clusted
+idx not clusted Sad -> ponteiro para idx clusted
+*/
+ EXPLAIN select * from clientes as c where c.cpf = 45345372901;
+ EXPLAIN select * from clientes as c where c.idCliente = 4;
+ EXPLAIN select * from clientes as c where c.fname = 'Sad';
