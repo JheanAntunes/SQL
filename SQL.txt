@@ -1199,3 +1199,15 @@ Os índices hash são uma técnica de indexação que utiliza funções de hash 
 			- Tabela 3: Funcionários_Projetos (ID_Funcionário, ID_Projeto)
 	
 		Essa decomposição elimina redundâncias, como a repetição do nome do funcionário ou do projeto em várias linhas.
+
+
+# Transações em SQL são essencialmente um conjunto de operações que são realizadas como uma unidade única e indivisível de trabalho. Elas são extremamente úteis quando você precisa garantir que um conjunto de operações seja executado com sucesso, ou então nenhuma delas seja aplicada, mantendo a consistência dos dados no banco de dados. Em outras palavras, uma transação segue o princípio do "tudo ou nada".
+Aqui estão os quatro princípios que regem as transações, conhecidos como propriedades ACID:
+	- Atomicidade: Tudo ou nada. Se uma parte da transação falhar, tudo é desfeito.
+	- Consistência: Garante que o banco de dados passe de um estado consistente para outro.
+	- Isolamento: Transações independentes entre si, evitando interferências.
+	- Durabilidade: Após ser concluída, a transação persiste, mesmo em caso de falha de sistema.
+
+
+
+
