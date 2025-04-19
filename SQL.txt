@@ -1237,4 +1237,11 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 	COMMIT;
 
 
+# Locking em Acesso Concomitante de Transações" refere-se aos mecanismos usados para gerenciar o acesso simultâneo aos dados em um banco de dados, garantindo consistência e integridade durante transações concorrentes.
+		
+	Quando múltiplas transações ocorrem ao mesmo tempo, o locking (bloqueio) previne conflitos, como dois usuários tentando atualizar o mesmo registro simultaneamente. Existem diferentes tipos de locks, como:
+	- Locks Compartilhados: Permitem que múltiplas transações leiam os mesmos dados, mas impedem modificações.
+	- Locks Exclusivos: Garantem que apenas uma transação possa modificar os dados, bloqueando outras de ler ou escrever.
+	- Locks de Atualização: Usados quando uma transação pretende modificar os dados, mas ainda não o fez.
 
+	Esses locks são fundamentais para manter as propriedades ACID (Atomicidade, Consistência, Isolamento, Durabilidade) das transações. Por exemplo, se dois usuários tentarem comprar o último item em estoque ao mesmo tempo, o locking assegura que apenas uma transação tenha sucesso, evitando inconsistências.
