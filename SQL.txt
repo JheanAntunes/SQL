@@ -1208,6 +1208,33 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 	- Isolamento: Transações independentes entre si, evitando interferências.
 	- Durabilidade: Após ser concluída, a transação persiste, mesmo em caso de falha de sistema.
 
+	# Uma transação em SQL pode ser implementada usando comandos específicos para garantir as propriedades ACID. Aqui está um exemplo prático para ilustrar:
+	Imagine que você está lidando com uma transferência bancária, onde o dinheiro precisa ser debitado de uma conta e creditado em outra. Em SQL, o código poderia ser assim:
+	Aqui está o que acontece:
+		- BEGIN TRANSACTION: Inicia a transação. A partir daqui, todas as operações ficam "pendentes" até que sejam confirmadas ou revertidas.
+		- UPDATE: Realiza as operações necessárias, como debitar e creditar valores em diferentes contas.
+		- COMMIT: Finaliza a transação, confirmando que as mudanças devem ser aplicadas de forma permanente.
+
+	Se algo der errado no meio do processo (por exemplo, uma falha no sistema ou um erro em uma das operações), você pode desfazer as alterações usando o comando ROLLBACK. Veja o exemplo:
+	BEGIN TRANSACTION;
+		-- Debitar da conta de origem
+		UPDATE contas
+		SET saldo = saldo - 100
+		WHERE id_conta = 1;
+
+		-- Simulando um erro (exemplo: saldo insuficiente na conta de destino)
+		IF (SELECT saldo FROM contas WHERE id_conta = 2) < 100
+		BEGIN
+				ROLLBACK;
+				PRINT 'Erro: Saldo insuficiente!';
+				RETURN;
+		END;
+
+		-- Creditar na conta de destino
+		UPDATE contas
+		SET saldo = saldo + 100
+		WHERE id_conta = 2;
+	COMMIT;
 
 
 
