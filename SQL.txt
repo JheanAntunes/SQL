@@ -1245,3 +1245,23 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 	- Locks de Atualização: Usados quando uma transação pretende modificar os dados, mas ainda não o fez.
 
 	Esses locks são fundamentais para manter as propriedades ACID (Atomicidade, Consistência, Isolamento, Durabilidade) das transações. Por exemplo, se dois usuários tentarem comprar o último item em estoque ao mesmo tempo, o locking assegura que apenas uma transação tenha sucesso, evitando inconsistências.
+
+# Leitura & Escrita de Item
+	1. read_item(x)
+	Este termo representa uma operação de leitura de um item específico em uma transação. Em outras palavras, read_item(x) refere-se ao ato de buscar ou acessar o valor atual de um item (como um dado ou registro no banco de dados). Após a execução, o valor de x é disponibilizado para ser usado na transação.
+	Exemplo: Se você tem um sistema bancário e deseja verificar o saldo de uma conta antes de realizar uma operação, a transação usaria read_item(saldo) para acessar o valor atual do saldo.
+
+	2. write_item(x)
+	Este termo representa uma operação de escrita ou atualização de um item específico no banco de dados. O write_item(x) é usado quando uma transação modifica o valor de um item e salva essa alteração no banco de dados.
+	Exemplo: No caso de uma transferência bancária, quando uma transação diminui o saldo de uma conta ou aumenta o saldo de outra, a transação executa write_item(saldo) para aplicar as mudanças.
+	
+	# Ciclo em uma transação:
+		Em uma transação típica, primeiro ocorre uma operação de leitura (read_item(x)), seguida por algum tipo de processamento ou cálculo interno, e então, se necessário, uma operação de escrita (write_item(x)).
+	
+	# Controle de concorrência:
+		Essas operações são fundamentais no controle de concorrência em transações, pois ajudam a determinar como os dados são acessados e modificados por várias transações simultâneas. Por exemplo:
+			- read_item(x) pode bloquear um item para evitar que outro processo o modifique enquanto está sendo lido.
+			- write_item(x) pode bloquear o item até que a transação seja confirmada ou revertida.
+
+	Esses conceitos garantem que as propriedades ACID (Atomicidade, Consistência, Isolamento e Durabilidade) sejam mantidas durante o processamento de transações.
+
