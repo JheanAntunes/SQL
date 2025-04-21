@@ -1265,3 +1265,33 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 
 	Esses conceitos garantem que as propriedades ACID (Atomicidade, Consistência, Isolamento e Durabilidade) sejam mantidas durante o processamento de transações.
 
+# O controle de concorrência em transações é essencial para manter a integridade e a consistência dos dados em um sistema de banco de dados quando múltiplas transações estão ocorrendo simultaneamente. Ele garante que as propriedades ACID (Atomicidade, Consistência, Isolamento e Durabilidade) sejam preservadas, mesmo em cenários de acesso concorrente.
+
+	# Problemas que o controle de concorrência resolve:
+		- Perda de Atualização (Lost Update):- Quando duas ou mais transações atualizam o mesmo dado simultaneamente, e as mudanças de uma transação sobrescrevem as de outra.
+
+		- Leitura Suja (Dirty Read):- Quando uma transação lê dados que foram modificados, mas ainda não confirmados por outra transação, podendo gerar inconsistências se a outra transação for revertida.
+
+		- Leitura Não Repetível (Non-Repeatable Read):- Quando uma transação lê o mesmo dado mais de uma vez, mas obtém valores diferentes porque outra transação modificou esse dado entre as leituras.
+
+		- Fantasmas (Phantom Reads):- Quando uma transação executa uma consulta duas vezes, mas obtém conjuntos de resultados diferentes devido a inserções ou exclusões feitas por outra transação.
+
+	# Técnicas de Controle de Concorrência:
+		- Bloqueios (Locks):- Bloqueios Compartilhados (Shared Locks): Permitem que várias transações leiam um dado ao mesmo tempo, mas impedem modificações enquanto o bloqueio estiver ativo.
+		- Bloqueios Exclusivos (Exclusive Locks): Permitem que apenas uma transação leia e modifique o dado, impedindo o acesso de outras transações.
+
+		- Controle de Concorrência com Carimbo de Tempo (Timestamp):- Cada transação recebe um carimbo de tempo (timestamp) único e é executada com base em sua ordem de chegada. Transações mais antigas têm prioridade sobre as mais novas.
+
+		- Controle Pessimista:- Assume que sempre haverá conflito, então bloqueios são aplicados preventivamente para evitar problemas.
+
+		- Controle Otimista:- Assume que os conflitos são raros. As transações ocorrem sem bloqueios, mas há uma validação no momento do commit para garantir que não houve conflitos.
+
+		- Serialização:- As transações são ordenadas de forma que o resultado final seja o mesmo que se as transações tivessem sido executadas uma de cada vez (serializadamente).
+
+	# Ferramentas práticas em bancos de dados:
+		A maioria dos sistemas de gerenciamento de bancos de dados (DBMS) modernos, como MySQL, PostgreSQL e SQL Server, oferecem suporte a níveis de isolamento para controlar concorrência:
+			- READ UNCOMMITTED: Permite leitura de dados não confirmados (mais suscetível a problemas).
+			- READ COMMITTED: Garante que apenas dados confirmados sejam lidos.
+			- REPEATABLE READ: Garante que dados lidos por uma transação não sejam modificados até o final dela.
+			- SERIALIZABLE: O nível mais restritivo, garantindo execução completamente isolada.
+
