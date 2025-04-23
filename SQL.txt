@@ -1295,3 +1295,9 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 			- REPEATABLE READ: Garante que dados lidos por uma transação não sejam modificados até o final dela.
 			- SERIALIZABLE: O nível mais restritivo, garantindo execução completamente isolada.
 
+	# Ending transação
+		- Ending the server
+		- Instrução: alter table
+		- Comando de start
+		- Detecção de deadLock
+		
