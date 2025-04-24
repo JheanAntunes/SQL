@@ -1300,4 +1300,43 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 		- Instrução: alter table
 		- Comando de start
 		- Detecção de deadLock
-		
+
+	# Transação Concorrente:
+		Ocorre quando duas ou mais transações estão simultaneamente tentando acessar ou modificar o mesmo registro no banco de dados. O MySQL utiliza mecanismos como bloqueios (locks) e níveis de isolamento para lidar com essas situações.
+		- Identificação:
+		O MySQL identifica uma transação concorrente se:- Ambas estão tentando executar write_item ou modificar o mesmo registro.
+		- Uma transação tenta acessar um dado que está bloqueado por outra transação (por exemplo, em um bloqueio exclusivo).
+
+		- Como o MySQL gerencia:- Utiliza locks (bloqueios compartilhados ou exclusivos) para controlar o acesso ao registro em questão. Exemplo:- Um bloqueio exclusivo impede que outra transação modifique o mesmo registro até o COMMIT ou ROLLBACK.
+
+		- Depende do nível de isolamento configurado. Por exemplo, em SERIALIZABLE, transações concorrentes são completamente isoladas umas das outras.
+
+		- Exemplo prático:- Transação 1: Atualiza o saldo da conta A (UPDATE contas SET saldo = saldo + 100 WHERE id_conta = 1).
+		- Transação 2: Tenta ler ou modificar o saldo da mesma conta (SELECT saldo FROM contas WHERE id_conta = 1). Nesse caso, o MySQL detecta concorrência e aplica os bloqueios necessários para evitar conflitos.
+
+	# Transação Sequencial:
+		Ocorre quando duas ou mais transações estão operando em registros diferentes ou em momentos distintos, sem interferir diretamente uma na outra.
+		- Identificação:
+		O MySQL entende que transações são sequenciais quando:- Cada transação opera em registros completamente diferentes (não há conflito de acesso ao mesmo dado).
+		- As transações são executadas uma após a outra, sem sobreposição no tempo.
+
+		- Como o MySQL gerencia:- No caso de transações que não têm interdependência, o MySQL processa as operações normalmente, sem necessidade de bloqueios específicos.
+		- Não há espera ou necessidade de gerenciamento especial, pois os dados acessados/modificados por cada transação não se sobrepõem.
+
+		- Exemplo prático:- Transação 1: Atualiza o saldo da conta A (UPDATE contas SET saldo = saldo + 100 WHERE id_conta = 1).
+		- Transação 2: Atualiza o saldo da conta B (UPDATE contas SET saldo = saldo - 50 WHERE id_conta = 2). Como essas transações operam em registros distintos, o MySQL não identifica concorrência e executa ambas normalmente.
+
+	# Diferença entre as duas:
+		- Concorrência: É marcada pela disputa pelo acesso ao mesmo recurso ou dado. O MySQL aplica mecanismos de controle para evitar inconsistências.
+		- Sequencialidade: Representa transações que não interferem uma na outra, permitindo execução tranquila sem necessidade de bloqueios ou controles complexos.
+
+
+
+
+
+
+
+
+
+
+
