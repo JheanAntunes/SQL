@@ -1330,13 +1330,15 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 		- Concorrência: É marcada pela disputa pelo acesso ao mesmo recurso ou dado. O MySQL aplica mecanismos de controle para evitar inconsistências.
 		- Sequencialidade: Representa transações que não interferem uma na outra, permitindo execução tranquila sem necessidade de bloqueios ou controles complexos.
 
+	# Savepoint em transações é um recurso do SQL que permite definir pontos intermediários dentro de uma transação. Com o SAVEPOINT, você pode marcar um estado específico e, se necessário, reverter apenas parte da transação usando ROLLBACK TO SAVEPOINT, em vez de desfazer tudo com um ROLLBACK completo.
+		Como funciona o SAVEPOINT?
+			- Definir um ponto intermediário na transação:- Permite que partes específicas de uma transação sejam revertidas sem cancelar a transação inteira.
 
+			- Fazer rollback até um SAVEPOINT específico:- Em caso de erro, você pode desfazer apenas até um determinado ponto, sem perder todas as alterações anteriores.
 
+			- Excluir um SAVEPOINT:- Se um ponto intermediário não for mais necessário, ele pode ser removido com RELEASE SAVEPOINT.
 
-
-
-
-
-
-
-
+		Benefícios do SAVEPOINT
+			✅ Permite um controle mais refinado sobre reversão de transações.
+			✅ Evita ROLLBACK completo, mantendo as operações anteriores intactas.
+			✅ Útil para transações complexas, onde nem todas as operações precisam ser desfeitas em caso de erro.
