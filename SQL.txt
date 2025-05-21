@@ -1342,3 +1342,49 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 			✅ Permite um controle mais refinado sobre reversão de transações.
 			✅ Evita ROLLBACK completo, mantendo as operações anteriores intactas.
 			✅ Útil para transações complexas, onde nem todas as operações precisam ser desfeitas em caso de erro.
+
+	# Por que ocorre uma transação em espera no MySQL?
+		Isso acontece em cenários de concorrência, quando duas ou mais transações tentam modificar ou ler o mesmo registro. Se uma transação já possui um bloqueio sobre esse recurso, outra transação que precise dele ficará em espera até que o bloqueio seja liberado.
+	
+	# Tipos de bloqueios que causam espera:
+		- Bloqueio Exclusivo (Exclusive Lock)- Se uma transação já está modificando um registro com UPDATE ou DELETE, qualquer outra transação tentando modificar esse mesmo registro ficará esperando o primeiro commit ou rollback.
+
+		- Bloqueio Compartilhado (Shared Lock)- Uma transação que está apenas lendo (SELECT ... FOR UPDATE) pode bloquear outras transações que tentam escrever no mesmo registro.
+
+		- Deadlock (Impasse)- Se duas transações dependem de um recurso bloqueado pela outra, ocorre um deadlock, e MySQL escolhe uma das transações para ser cancelada.
+
+	Exemplo prático de transação esperando no MySQL
+		Suponha que duas transações tentam modificar o mesmo registro simultaneamente:
+		Transação 1:
+			START TRANSACTION;
+			UPDATE contas SET saldo = saldo - 100 WHERE id_conta = 1;
+			-- Transação 1 ainda não fez COMMIT
+
+		Transação 2:
+			START TRANSACTION;
+			UPDATE contas SET saldo = saldo + 100 WHERE id_conta = 1;
+			-- Fica em espera porque Transação 1 tem um bloqueio no registro!
+	
+		A Transação 2 não pode continuar até que a Transação 1 finalize com um COMMIT ou ROLLBACK.
+
+	# Como resolver ou evitar espera em transações no MySQL?
+		- Definir um tempo máximo de espera (innodb_lock_wait_timeout):
+			SET innodb_lock_wait_timeout = 5; -- Tempo máximo de espera em segundos
+			Assim, se uma transação ficar bloqueada por mais de 5 segundos, ela falha em vez de esperar indefinidamente.
+		
+		- Usar NOWAIT ou SKIP LOCKED para evitar bloqueio:
+			NOWAIT: Se o recurso estiver bloqueado, a transação falha imediatamente, sem esperar
+				SELECT * FROM contas WHERE id_conta = 1 FOR UPDATE NOWAIT;
+			
+			- SKIP LOCKED: Ignora registros bloqueados e continua a execução.
+				SELECT * FROM contas WHERE id_conta = 1 FOR UPDATE SKIP LOCKED;
+
+		- Evitar Deadlocks organizando a ordem das operações entre transações concorrentes.- Certifique-se de que todas as transações que envolvem múltiplos registros sigam sempre a mesma ordem para evitar dependências circulares.
+
+		# Conclusão
+			Transações em espera no MySQL ocorrem devido a bloqueios em registros sendo modificados por outras transações. Para evitar problemas, você pode ajustar tempos de espera (innodb_lock_wait_timeout), usar estratégias como NOWAIT ou SKIP LOCKED, e garantir que as transações sigam uma ordem lógica.
+
+
+
+
+
