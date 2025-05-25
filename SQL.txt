@@ -1384,6 +1384,25 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 		# Conclusão
 			Transações em espera no MySQL ocorrem devido a bloqueios em registros sendo modificados por outras transações. Para evitar problemas, você pode ajustar tempos de espera (innodb_lock_wait_timeout), usar estratégias como NOWAIT ou SKIP LOCKED, e garantir que as transações sigam uma ordem lógica.
 
+📌 Equivalência por Visão
+	- Duas transações podem operar sobre o mesmo registro em momentos diferentes, mas, independentemente da ordem de execução, o estado final do banco de dados é o mesmo.
+	- Mesmo que os valores obtidos durante a execução possam variar, o resultado final não muda.
+	- O sistema permite reordenar as operações sem afetar a integridade dos dados.
+	💡 Exemplo:
+	- T1: Atualiza o saldo da conta A para saldo + 100.
+	- T2: Faz um SELECT saldo da conta A antes ou depois de T1.
+	- Dependendo da ordem de execução, T2 pode ver o saldo original ou atualizado, mas o estado final da conta é o mesmo.
+
+⚠️ Equivalência por Conflito
+	- A ordem de execução afeta diretamente o estado final do banco de dados.
+	- Se duas transações modificam ou leem o mesmo registro e a ordem de execução muda, o resultado pode ser diferente, levando à sobreposição de dados ou inconsistência.
+	- Isso acontece porque pelo menos uma transação realiza um write_item(x), interferindo na outra.
+	💡 Exemplo:
+	- T1: Atualiza o saldo da conta A (saldo + 100).
+	- T2: Atualiza o saldo da conta A (saldo - 50).
+	- Dependendo da ordem de execução, o saldo final pode ser diferente, causando sobreposição.
+	No caso da equivalência por conflito, os dados finais podem ser comprometidos, exigindo mecanismos como bloqueios ou serialização para garantir que as transações sejam executadas de forma controlada.
+
 
 
 
