@@ -1403,7 +1403,47 @@ Aqui estão os quatro princípios que regem as transações, conhecidos como pro
 	- Dependendo da ordem de execução, o saldo final pode ser diferente, causando sobreposição.
 	No caso da equivalência por conflito, os dados finais podem ser comprometidos, exigindo mecanismos como bloqueios ou serialização para garantir que as transações sejam executadas de forma controlada.
 
+# Recovery;
+- Falha do servidor (System crash)
+- Error do System | Transaction
+- Errors locals | Condition of except
+- Imposição do controle de concorrência
+- Falha do disco
+- Problemas Físicos e Catastrofes;
 
+# O que é o Log de Transações?
+	O log de transações é um registro que o SGBD mantém para armazenar todas as alterações realizadas no banco de dados durante uma transação. Esse log garante que, em caso de falhas, o sistema possa recuperar os dados e manter a integridade e consistência do banco.
+	📌 O objetivo principal do log de transações é possibilitar:
+		- Recuperação de falhas: Se o banco de dados for desligado inesperadamente, ele pode restaurar transações incompletas.
+		- Garantia de Atomicidade: Permite que uma transação seja completamente concluída ou totalmente revertida (ROLLBACK).
+		- Manutenção da consistência: Registra todas as operações para evitar corrupção de dados.
+		- Suporte a concorrência: Facilita técnicas como controle de bloqueio e isolamento de transações.
 
+	# Como o Log de Transações Funciona?
+		Cada transação gera entradas no log, que são armazenadas antes das mudanças serem aplicadas ao banco de dados. Essas entradas contêm informações como:
+		- BEGIN TRANSACTION: Marca o início da transação.
+		- WRITE_ITEM(x, valor_antigo, valor_novo): Registra qualquer alteração feita em um dado (x).
+		- READ_ITEM(x): Indica que um dado foi lido.
+		- COMMIT: Confirma que a transação foi concluída com sucesso.
+		- ROLLBACK: Indica que a transação foi revertida.
+		- CHECKPOINT: Um ponto de recuperação usado para otimizar o log e garantir que apenas transações recentes precisem ser restauradas em caso de falha.
+		Exemplo de log de uma transação:
+		T1 - BEGIN TRANSACTION
+		T1 - READ saldo FROM contas WHERE id_conta = 1
+		T1 - WRITE saldo (500 → 600)
+		T1 - COMMIT
 
+		Se o sistema falhar antes do COMMIT, o SGBD pode reverter a transação usando os registros no log.
 
+	#Tipos de Logs Usados no MySQL e Outros SGBDs
+		💾 Redo Log (Registro de Reexecução)
+		- Mantém alterações confirmadas (COMMIT) para garantir que os dados sejam restaurados corretamente após falhas.
+
+		🛠️ Undo Log (Registro de Desfazer)
+		- Armazena o estado anterior dos dados, permitindo ROLLBACK de transações não confirmadas.
+
+		🏁 Binário Log (Binary Log - MySQL)
+		- No MySQL, esse log armazena todas as operações de alteração, permitindo replicação e recuperação de dados.
+
+	# Conclusão
+	O log de transações é um mecanismo essencial para garantir que os dados sejam seguros, confiáveis e recuperáveis em caso de falhas. Ele ajuda o SGBD a manter a consistência e durabilidade das transações, garantindo que nenhuma informação seja perdida ou corrompida.
